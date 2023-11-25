@@ -1,0 +1,22 @@
+﻿SWOT Analysis
+
+S
+Strengths
+* My application is different from others in that it will allow users to submit name ideas
+* My application will have fake future missions, making it more creative
+* My application is going to encourage learning by providing information in unique way
+	W
+Weakness
+* A weakness can it is a new site with other well known sites
+* Another is that is isn’t as interactive as others
+* Will not be able to include voting from other users
+O
+Opportunities
+* I want to have in the future a option to vote for names liked
+* Opportunity to grow with connecting to social media sites
+* Include maybe theoretical missions to stars around us
+T
+Threats
+* Existing sites have known name recognition
+* Ability to update site quicker than mine due to having information directly from major space programs
+* Weekly newsletters for a member community

@@ -1,0 +1,19 @@
+Research the following:
+
+List Applications Researched: (links to websites / applications)
+https://nssdc.gsfc.nasa.gov/planetary/upcoming.html
+https://ideas.esa.int/servlet/hype/IMT?userAction=Browse&templateName=MenuItem&documentId=673af3915f2dfdbf82bf460e9271fe9f
+https://www.planetary.org/space-missions
+
+List what you like about each site:
+I like the setup of Planetary Society. It is very user friendly. Its large-scale site is identical to its mobile site.
+The ESA website has ideas for missions themselves, not just trying to name the mission.
+Nasa�s site for future missions is very stripped down and quite simple. I like it for just providing information.
+
+List what you do not like about each site:
+Nasa�s site, while simple, is also not very inviting to the user.
+The Planetary Society site has everything all laid out, making you scroll through other planets before you get to where you want.
+ESA site feels like it can be organized better, like campaigns for planets or have it simplified a little bit.
+
+How my application will be different:
+My application will take the positives from other sites, as well as my ideas and gather them in a simple yet user friendly site. Having interactive tiles when you have your mouse over show information, or having an easily accessible site is what I am going to strive for.
