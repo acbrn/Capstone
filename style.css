@@ -1,0 +1,18 @@
+
+h1{
+  color: yellow;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: titan one;
+  text-decoration: underline;
+  background-color: rgb(4, 4, 20);
+  border: 2px solid #fff;
+}
+body{
+  background-color: rgb(4, 4, 20);
+}
+p{
+  color: #fff;
+  text-size-adjust: 10%;
+  text-align: center;
+}
