@@ -4,43 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css" />
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Exo+2&display=swap');
-    </style>
+
     <title>Intergalactic Voyages</title>
     <div class="header">
-        <img src="Interstell.png" alt="interstellarlogo" >
+        <img src="Interstell.png" id="logo" alt="interstellarlogo">
         <h1 id="headline">Contact Intergalactic <span> Voyages</span></h1>
     </div>
-    <style>
-        body {
-            font-family: 'Exo 2', sans-serif;
-            color: #cdd0c8ff;
-        }
-    </style>
+
 </head>
 <body>
     <main>
-        <nav class="sidebar" id="nav">
-            <a class="active" href="index.html">Home</a>
+        <nav class="topbar" id="nav">
+            <a href="index.html">Home</a>
             <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
+            <a class="active" href="contact.html">Contact</a>
             <a href="submit.html">Submit Mission Names</a>
             <a href="futureMissions.html">Future Missions</a>
         </nav>
 
         <div class="content">
-            <div class="item">
-                Welcome home traveler!
-                <br>
-                Embark on a cosmic journey with our dedication to unveiling the mysteries of upcoming planetary missions. Here, we bring you a comprehensive list of major and pivotal future expeditions, offering you a front-row seat to the next chapter in interplanetary exploration.
-                <br>
-                Whether you're a space enthusiast, a science buff, or just curious about the wonders beyond Earth, our platform is your gateway to the latest and greatest in planetary missions. Navigate through the cosmos by exploring missions, delving into details about specific planets, or even contributing your imaginative prowess by submitting name ideas for upcoming missions.
-                <br>
-                Join us as we propel into the future, pushing the boundaries of human knowledge and discovery. The universe is vast, and the possibilities are infinite. Come along and be part of the cosmic adventure that awaits us. The next frontier is just a click away!
-                <br>
-            </div>
         </div>
+        <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8"
+        action="https://formspree.io/f/xbjvnzoo" method="POST">
+            <fieldset id="fs-frm-inputs">
+              <label for="full-name">Full Name</label>
+              <input type="text" name="name" id="full-name" placeholder="First and Last"
+              required="">
+              <label for="email-address">Email Address</label>
+              <input type="email" name="_replyto" id="email-address" placeholder="email@domain.tld"
+              required="">
+              <label for="message">Message</label>
+              <textarea rows="5" name="message" id="message" placeholder="Comment here"
+              required=""></textarea>
+              <input type="hidden" name="_subject" id="email-subject" value="Contact Form
+              Submission">
+            </fieldset>
+            <input type="submit" value="Submit">
+        </form>
     </main>
 
     <footer id="footer" style="text-align: center; margin-top: 20px;">
