@@ -15,7 +15,7 @@
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "stylelint.enable": true,
-  "workbench.colorTheme": "Andromeda Bordered",
+  "workbench.colorTheme": "Atom One Dark",
   "workbench.enableExperiments": false,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.view.alwaysShowHeaderActions": true,
@@ -27,5 +27,6 @@
     "interstellarlogo",
     "Makemake"
   ],
-  "liveServer.settings.port": 5501
+  "liveServer.settings.port": 5501,
+  "editor.largeFileOptimizations": false
 }
