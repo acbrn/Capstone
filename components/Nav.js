@@ -5,8 +5,8 @@ export default (links, state) => html`
     <nav class="navbar" id="navbar">
       <ul>
         ${links.map(
-          (link) => html`
-            <li class="${state.view === link.title ? 'active' : ''}">
+          link => html`
+            <li class="${state.view === link.title ? "active" : ""}">
               <a href="/${link.title}" title="${link.title}" data-navigo>
                 <i class="fa-solid ${link.iconClass}"></i> ${link.text}
               </a>

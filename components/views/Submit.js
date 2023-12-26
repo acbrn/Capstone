@@ -2,7 +2,7 @@ import html from "html-literal";
 
 export default () => html`
   <div class="content" id="submission">
-    <form id="sub-menu">
+    <form class="sub-menu" id="sub-menu">
       <label for="planet">Select a Planet:</label>
       <select id="planet" name="planet">
         <option value="Mercury">Mercury</option>

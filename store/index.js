@@ -4,3 +4,4 @@ export { default as Contact } from "./Contact";
 export { default as Submit } from "./Submit";
 export { default as Futuremissions } from "./Futuremissions";
 export { default as Links } from "./Links";
+export { default as Viewnotfound } from "./Viewnotfound";

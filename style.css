@@ -34,21 +34,25 @@
   font-size: 1.5em;
 }
 .menu_wrapper .navbar ul {
+  flex-direction: row;
+  width: 95vw;
+  height: 10em;
   list-style: none;
   display: flex;
-  flex-direction: row;
-  width: 100vw;
-  height: 10em
-;
+  justify-content: space-around;
+  flex-wrap: nowrap;
 }
 .menu_wrapper .navbar li {
   margin: 0 10px;
 }
 .menu_wrapper .navbar li a {
   color: #cdd0c8;
-  text-decoration: none;
+  display: flex;
   padding: 10px;
-  transition: 0.5s ease;
+  text-decoration: none;
+  transition: all .3s;
+  align-items: center;
+  flex-direction: row;
 }
 .menu_wrapper .navbar li.active a {
   color: var(--color-accent);
@@ -59,6 +63,9 @@
   color: red;
   transition: .8s ease-in;
 }
+#plannedMissionsTitle, #currentMissionsTitle{
+  text-align: center;
+}
 
 /* Body & Background */
 body {
@@ -67,13 +74,51 @@ body {
   margin: 0;
   font-family: 'Exo 2', sans-serif;
   text-align: left;
-  height:100vh;
+  height:195vh;
+}
+.content {
+  color: #cdd0c8;
+  text-align: left;
+  margin: auto;
+  padding: 1em;
+  font-family: "Exo 2", sans-serif;
+  font-size: 2.5em;
 }
 .content-form {
-  width: fit-content;
+  color: #cdd0c8;
+  display: flex;
+  font-family: "Exo 2", sans-serif;
+  font-size: 1.5em;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+div.content-form{
+  border-radius: 5px;
+  padding: 20px;
+}
+.aboutPage{
   color: #cdd0c8;
   font-family: "Exo 2", sans-serif;
   font-size: 1.5em;
+  padding: 1em;
+  margin: auto;
+}
+.aboutPage, .attribution {
+  color: #cdd0c8;
+  margin: auto;
+  padding: 1em;
+  font-family: "Exo 2", sans-serif;
+  font-size: 2.5em;
+  text-align: center;
+}
+.attribution{
+  color: #cdd0c8;
+  font-family: "Exo 2", sans-serif;
+  font-size: 1.5em;
+  padding: 1em;
+  margin: auto;
 }
 input[type=text], select{
   width: 50%;
@@ -104,65 +149,66 @@ input[type=message], select{
 }
 input[type="submit"] {
   color: #cdd0c8;
-  font-weight: bold;
-  font-size: xx-large;
   cursor: pointer;
-  background-color: #192940;
   border: var(--color-accent) 2px solid;
   border-radius: 5px;
-  width: 50%;
+  background-color: var(--color-primary);
+  justify-content: center;
+  width: 25%;
   margin: 8px 10em;
   padding: 19px 30px;
+  font-size: xx-large;
+  font-weight: bold;
   display: flex;
-  justify-content: center;
 }
 input[type=submit]:hover {
-  background-color: var(--color-timberwolf);
+  background-color:snow;
   color: var(--color-primary);
 }
-div.content-form{
-  border-radius: 5px;
-  padding: 20px;
-}
-.content {
-  color: #cdd0c8;
-  font-family: "Exo 2", sans-serif;
-  font-size: 1.5em;
-  padding: 1em;
-  margin: auto;
-}
+
 
 /* Submission Inform */
 #submission {
-  display: flex;
-  flex-direction: column;
+  flex-flow: wrap;
   align-items: center;
-  font-family: 'Exo 2', sans-serif;
-  font-size: x-large;
-}
-#sub-menu {
-  display: flex;
   font-family: "Exo 2", sans-serif;
-  font-size: larger;
-  font-weight: bold;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-items: center;
+  font-size: x-large;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#sub-menu{
+flex-flow: column;
+align-items: center;
+font-family: "Exo 2", sans-serif;
+font-size: larger;
+font-weight: bold;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: center;
 }
 .content #sub-menu #planet {
   font-family: "Exo 2", sans-serif;
   font-size: 2em;
   text-align: center;
 }
-
+fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 /* Results */
 #result {
-  flex-flow: row;
-  justify-content: space-evenly;
-  align-items: center;
+  text-align: center;
+  flex-flow: column;
+  justify-content: space-around;
   font-weight: 500;
   display: flex;
-  text-align: center;
+  flex-direction: row;
 }
 #result > div {
   width: 15%;
@@ -175,9 +221,13 @@ div.content-form{
 
 /* Planet image styling */
 .planetImage {
-  height: 2em;
-  margin-top: 5px;
-  width: 2em;
+    align-self: center;
+    margin-top: 5px;
+}
+#imgLost {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
 }
 img {
   height: 3em;
@@ -192,8 +242,29 @@ ul {
   flex-wrap: wrap;
   justify-content: center;
 }
-/* Future Missions Boxing */
+.satelliteImg {
+  position: absolute;
+  top: 750px;
+  left: 150px;
+  transform: rotate(360deg);
+  animation: outbound 10s  infinite linear;
+}
+@keyframes outbound {
+  0% {
+    top: 750px;
+    left: 150px;
+  }
 
+  100% {
+    top: 750px;
+    left: 850px;
+    width: 5px;
+    height: 1px;
+}
+
+}
+
+/* Future Missions Boxing */
 li {
   display: flex;
   padding: 0.8em;
@@ -202,19 +273,6 @@ li {
   font-size: larger;
   text-decoration: none;
   list-style-type: none;
-}
-a:hover{
-  text-decoration: none;
-  color: var(--color-timberwolf);
-  background-color:#192940;
-  text-align: left;
-  transition-delay: 200ms;
-  transition-property: background, transform;
-}
-a:active{
-  color: #f9cc0b;
-  background-color: #475569;
-  text-align: left;
 }
 .column {
   color: #cdd0c8;
@@ -239,16 +297,23 @@ a:active{
   font-weight: bold;
   text-align: -webkit-center;
 }
-
 /* Responsive */
 @media (max-width: 768px) {
-  #logo {
-    padding-left: 5%;
-    width: 75%;
-    position: static;
-    height: auto;
-    overflow: visible;
-  }
+  #headline {
+    color: #cdd0c8;
+    flex-flow: row;
+    font-family: "Exo 2", sans-serif;
+    font-size: 2em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#headline span {
+  color: var(--color-accent);
+  display: flex;
+  justify-content: center;
+}
   input[type="message"], select {
     box-sizing: border-box;
     border: 1px solid #f9cc0b;
@@ -258,19 +323,19 @@ a:active{
     padding: 12px 20px;
     display: block;
 }
-  input[type="submit"] {
-    color: #cdd0c8;
-    cursor: pointer;
-    border: var(--color-accent) 2px solid;
-    background-color: #192940;
-    border-radius: 5px;
-    justify-content: center;
-    width: 50%;
-    margin: 7px 3em;
-    padding: 19px 30px;
-    font-size: xx-large;
-    font-weight: bold;
-    display: flex;
+input[type="submit"] {
+  color: #cdd0c8;
+  cursor: pointer;
+  border: var(--color-accent) 2px solid;
+  border-radius: 5px;
+  background-color: var(--color-primary);
+  justify-content: center;
+  width: 25%;
+  margin: 8px 10em;
+  padding: 19px 30px;
+  font-size: xx-large;
+  font-weight: bold;
+  display: flex;
 }
 .navbar {
   background-color: var(--color-primary);
@@ -283,31 +348,52 @@ a:active{
   flex-direction: column;
   font-size: 0.41em;
 }
-  .nav-menu {
-    text-align: center;
-    color: var(--color-timberwolf);
-    background-color: var(--color-primary);
-    border-bottom: 2px solid #f9cc0b;
-    flex-direction: row;
-    width: 100%;
-    margin: auto;
-    padding: 10px 2px 7px;
-    font-family: "Exo 2", sans-serif;
-    font-weight: bold;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: flex-start;
+.menu_wrapper{
+  background-color: #0000;
+  align-items: normal;
+  width: auto;
+  font-family: "Exo 2", sans-serif;
+  font-size: 1.5em;
+  display: flex;
 }
-  .nav-menu.active {
-    color: #475569;
-    left: 0;
+.menu_wrapper .navbar ul {
+  flex-flow: row;
+  height: 7em;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  font-weight: bold;
 }
-.nav-item {
-    margin: 0.25em 4px;
-    text-align: -webkit-right;
+.menu_wrapper .navbar li a:hover {
+  color: red;
+  transition: all 0.5s cubic-bezier(0, 0, 0.48, 1.26);
 }
-  }
-
+.menu_wrapper .navbar li a{
+padding: 4px;
+text-decoration: none;
+transition: all .5s;
+}
+.menu_wrapper .navbar li.active {
+  color: var(--color-accent);
+  border-radius: 45px;
+  transition-duration: .4s;
+  transform: rotate(340deg);
+}
+.menu_wrapper .navbar li.active a {
+  color: red;
+  border-bottom: 7px solid var(--color-accent);
+  border-radius: 50px;
+}
+li {
+  color: #cdd0c8;
+  text-align: center;
+  padding: 0.8em;
+  font-size: larger;
+  text-decoration: none;
+  list-style-type: none;
+  display: flex;
+}
 #footer {
   color: var(--color-timberwolf);
   background-color: var(--color-primary);
@@ -316,14 +402,8 @@ a:active{
   padding: 25px 5px 20px;
   font-family: "Exo 2", sans-serif;
   font-weight: bold;
-  text-align: -webkit-center;
-
-  .nav-menu {
-    display: none;
-  }
-  .nav-menu.nav-menu-hidden {
-    display: flex;
-  }
+  text-align: center;
+}
 }
 @media (min-width: 550px) {
     nav > .fa-bars {
@@ -355,6 +435,6 @@ a:active{
     padding: 25px 5px 20px;
     font-family: "Exo 2", sans-serif;
     font-weight: bold;
-    text-align: -webkit-center;
+    text-align: center;
   }
 }
