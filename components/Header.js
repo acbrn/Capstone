@@ -1,5 +1,5 @@
 import html from "html-literal";
-import IVlogo from "../assets/img/interstell.png";
+import IVlogo from "./assets/img/interstell.png";
 export default () => html`
   <div class="header">
     <h1 id="headline">
