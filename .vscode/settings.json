@@ -3,7 +3,7 @@
   "css.validate": false,
   "editor.accessibilitySupport": "off",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   "editor.fontLigatures": true,
   "editor.minimap.enabled": false,
@@ -15,11 +15,19 @@
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "stylelint.enable": true,
-  "workbench.colorTheme": "Material Theme",
+  "workbench.colorTheme": "Atom One Dark",
   "workbench.enableExperiments": false,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.view.alwaysShowHeaderActions": true,
   "editor.rulers": [
       100, 120
-  ]
+  ],
+  "cSpell.words": [
+    "ACBRN",
+    "collapsibles",
+    "interstellarlogo",
+    "Makemake"
+  ],
+  "liveServer.settings.port": 5501,
+  "editor.largeFileOptimizations": false
 }
