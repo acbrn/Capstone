@@ -15,7 +15,7 @@ export default () => html`
           type="text"
           name="name"
           id="full-name"
-          placeholder="First and Last"
+          placeholder="Enter Name"
           required=""
         />
         <label for="email-address">Email Address</label>

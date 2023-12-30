@@ -2,7 +2,7 @@ import html from "html-literal";
 
 export default (links, state) => html`
   <div class="menu_wrapper">
-    <nav class="navbar" id="navbar">
+    <nav class="navbar" id="nav">
       <ul>
         ${links.map(
           link => html`
