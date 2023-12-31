@@ -12,7 +12,6 @@ import Jupiter from "./assets/img/jupiter.png";
 import Saturn from "./assets/img/saturn.png";
 import Uranus from "./assets/img/uranus.png";
 import Neptune from "./assets/img/neptune.png";
-import Pluto from "./assets/img/pluto.png";
 
 const router = new Navigo("/");
 
@@ -149,9 +148,5 @@ function getPlanetImage(planet) {
       return `${Uranus}`;
     case "Neptune":
       return `${Neptune}`;
-    case "Pluto":
-      return `${Pluto}`;
-    default:
-      return `${Satellite}`;
   }
 }
