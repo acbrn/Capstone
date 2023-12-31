@@ -30,7 +30,6 @@
   background-color: #0000;
   align-items: normal;
   width: auto;
-  display: flex;
   font-size: 1.5em;
 }
 .menu_wrapper .navbar ul {
@@ -70,7 +69,7 @@
 
 /* Body & Background */
 body {
-  background: rgb(10, 10, 10);
+  background: rgb(12,30,54);
   margin: 0;
   font-family: 'Exo 2', sans-serif;
   text-align: left;

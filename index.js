@@ -13,7 +13,7 @@ import Saturn from "./assets/img/saturn.png";
 import Uranus from "./assets/img/uranus.png";
 import Neptune from "./assets/img/neptune.png";
 import Pluto from "./assets/img/pluto.png";
-import acbrn from "./assets/img/acbrn.png";
+
 
 const router = new Navigo("/");
 
