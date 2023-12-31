@@ -12,7 +12,7 @@ export default () => {
   return html`
     <div class="planetary-lists">
       <form action="#">
-        <label for="planetary" id="missions"><h4>Planned Missions</h4></label>
+        <label for="planetary"> Planned Missions</label>
         <select name="plannedPlanets" id="planetary">
           <option value="Mercury">Mercury</option>
           <option value="Venus">Venus</option>
