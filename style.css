@@ -12,17 +12,28 @@
   display: flex;
 }
 #headline {
+  height: 10dvh;
+  background-color: rgb(10, 10, 10);
   color: #cdd0c8;
   flex-flow: row;
   justify-content: space-evenly;
-  align-items: flex-end;
+  align-items: center;
   font-family: "Exo 2", sans-serif;
-  font-size: 20em;
+  font-size: 5dvw;
   display: flex;
 }
 #headline span {
   color: var(--color-accent);
   padding: 4px;
+}
+h2 {
+  color: var(--color-accent);
+  display: flex;
+  justify-content: flex-end ;
+}
+h3{
+  color: red;
+  display: flex;
 }
 /* Navigation Setup */ /* Navigation Bar */
 .menu_wrapper {
@@ -242,18 +253,27 @@ ul {
   justify-content: center;
 }
 /* Future Missions Boxing */
-.planetary-lists{
-[type=button]{
-  margin: 1em;
-  background: white;
-  color: var(--color-primary);
-  font-weight: bold;
-  padding: 1em;
-  border-radius: 2em;
+
+li{
+  display: flex;
+  padding: 0.8em;
+  color: #cdd0c8;
+  text-align: center;
+  font-size: larger;
+  text-decoration: none;
+  list-style-type: none;
 }
-input[type=button]:hover {
-  background-color:var(--color-blue);
-  color: var(--color-accent);
+#plannedMissions.planet-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: flex-start;
+}
+#currentMissions.planet-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: flex-start;
 }
 select {
   box-sizing: border-box;
@@ -269,10 +289,7 @@ form {
   flex-direction: column;
   align-items: center;
 }
-}
-#plannedMissionsTitle, #currentMissionsTitle{
-  text-align: center;
-}
+
 
 /* Footer */
 footer {
