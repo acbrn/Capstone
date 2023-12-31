@@ -15,7 +15,7 @@
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "stylelint.enable": true,
-  "workbench.colorTheme": "Atom One Dark",
+  "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
   "workbench.enableExperiments": false,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.view.alwaysShowHeaderActions": true,
@@ -26,7 +26,8 @@
     "ACBRN",
     "collapsibles",
     "interstellarlogo",
-    "Makemake"
+    "Makemake",
+    "Navigo"
   ],
   "liveServer.settings.port": 5501,
   "editor.largeFileOptimizations": false

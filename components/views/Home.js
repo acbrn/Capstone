@@ -1,12 +1,12 @@
 import html from "html-literal";
-import mars from "../../assets/img/mars.png";
+import Earth from "../../assets/img/earth.png";
 
 export default state => html`
   <div class="content">
     <div class="item">
       Welcome home traveler!
       <br />
-      <img class="homeImg" src="${mars}" />
+      <img class="homeImg" src="${Earth}" />
       <br />
       Embark on a cosmic journey with our dedication to unveiling the mysteries
       of upcoming planetary missions. Here, we bring you a comprehensive list of

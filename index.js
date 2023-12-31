@@ -13,10 +13,7 @@ import Saturn from "./assets/img/saturn.png";
 import Uranus from "./assets/img/uranus.png";
 import Neptune from "./assets/img/neptune.png";
 import Pluto from "./assets/img/pluto.png";
-import Satellite from "./assets/img/space-satellite.png";
-import { error } from "console";
 
-console.log(process.env.NEAR_EARTH_ORBIT_API_KEY);
 
 const router = new Navigo("/");
 
@@ -31,11 +28,19 @@ function render(state = store.Home) {
   afterRender();
 }
 function afterRender() {
-  // add menu toggle to bars icon in nav bar
-  document.querySelector(".fa-bars").addEventListener("click", () => {
-    document.querySelector("nav > ul").classList.toggle("hidden--mobile");
-  });
+  const barsIcon = document.querySelector(".fa-bars");
+  const navList = document.querySelector("nav > ul");
+
+  // Check if both elements exist before adding the event listener
+  if (barsIcon && navList) {
+    barsIcon.addEventListener("click", () => {
+      navList.classList.toggle("hidden--mobile");
+    });
+  } else {
+    console.error("Bars icon or nav list not found.");
+  }
 }
+
 router.hooks({
   before: (done, params) => {
     // We need to know what view we are on to know what data to fetch
@@ -100,17 +105,19 @@ router
   .resolve();
 
 // selected planet and mission name
-window.onload = function() {
-  document
-    .getElementById("sub-menu")
-    .addEventListener("submit", function(event) {
-      event.preventDefault();
+document.getElementById("sub-menu").addEventListener("submit", function(event) {
+  event.preventDefault();
 
-      const selectedPlanet = document.getElementById("planet").value;
-      const missionName = document.getElementById("mission").value;
+  // Cache references to the elements
+  const planetInput = document.getElementById("planet");
+  const missionInput = document.getElementById("mission");
+  const resultContainer = document.getElementById("result");
 
-      const resultEntry = document.createElement("div");
-      resultEntry.innerHTML = `
+  const selectedPlanet = planetInput.value;
+  const missionName = missionInput.value;
+
+  const resultEntry = document.createElement("div");
+  resultEntry.innerHTML = `
     <h2>Your Selection:</h2>
     <p>Selected Planet: ${selectedPlanet}</p>
     <p>Mission Name: ${missionName}</p>
@@ -118,12 +125,12 @@ window.onload = function() {
       selectedPlanet
     )}" alt="Planet Image">`;
 
-      document.getElementById("result").appendChild(resultEntry);
+  resultContainer.appendChild(resultEntry);
 
-      document.getElementById("planet").value = "";
-      document.getElementById("mission").value = "";
-    });
-};
+  // Clear input values
+  missionInput.value = "";
+});
+
 // Function to get the image URL for the selected planet
 function getPlanetImage(planet) {
   switch (planet) {
