@@ -14,7 +14,6 @@ import Uranus from "./assets/img/uranus.png";
 import Neptune from "./assets/img/neptune.png";
 import Pluto from "./assets/img/pluto.png";
 
-
 const router = new Navigo("/");
 
 function render(state = store.Home) {
