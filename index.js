@@ -23,21 +23,21 @@ function render(state = store.Home) {
     ${Footer()}
   `;
   router.updatePageLinks();
-  afterRender();
+  // afterRender();
 }
-function afterRender() {
-  const barsIcon = document.querySelector(".fa-bars");
-  const navList = document.querySelector("nav > ul");
+// function afterRender() {
+//   const barsIcon = document.querySelector(".fa-bars");
+//   const navList = document.querySelector("nav > ul");
 
-  // Check if both elements exist before adding the event listener
-  if (barsIcon && navList) {
-    barsIcon.addEventListener("click", () => {
-      navList.classList.toggle("hidden--mobile");
-    });
-  } else {
-    console.error("Bars icon or nav list not found.");
-  }
-}
+//   // Check if both elements exist before adding the event listener
+//   if (barsIcon && navList) {
+//     barsIcon.addEventListener("click", () => {
+//       navList.classList.toggle("hidden--mobile");
+//     });
+//   } else {
+//     console.error("Bars icon or nav list not found.");
+//   }
+// }
 
 router.hooks({
   before: (done, params) => {
