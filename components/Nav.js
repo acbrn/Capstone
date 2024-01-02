@@ -1,8 +1,8 @@
 import html from "html-literal";
 
 export default (links, state) => html`
-  <div class="menu_wrapper">
-        <nav class="navbar" id="navbar">
+  <nav class="navbar" id="navbar">
+    <div class="menu_wrapper">
       <ul>
         ${links.map(
           link => html`
@@ -13,8 +13,7 @@ export default (links, state) => html`
             </li>
           `
         )}
-        </ul>
-      </nav>
+      </ul>
     </div>
-  </div>
+  </nav>
 `;
