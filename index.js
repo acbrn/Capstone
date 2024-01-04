@@ -13,6 +13,16 @@ import Saturn from "./assets/img/saturn.png";
 import Uranus from "./assets/img/uranus.png";
 import Neptune from "./assets/img/neptune.png";
 
+const planetImages = {
+  Mercury,
+  Venus,
+  Earth,
+  Mars,
+  Jupiter,
+  Saturn,
+  Uranus,
+  Neptune
+};
 const router = new Navigo("/");
 
 function render(state = store.Home) {
@@ -22,23 +32,30 @@ function render(state = store.Home) {
     ${Main(state)}
     ${Footer()}
   `;
+
+  const menuToggle = document.querySelector(".menu_toggle");
+  if (menuToggle) {
+    menuToggle.addEventListener("click", toggleMenu);
+  }
+
   router.updatePageLinks();
-  // afterRender();
 }
-// function afterRender() {
-//   const barsIcon = document.querySelector(".fa-bars");
-//   const navList = document.querySelector("nav > ul");
 
-//   // Check if both elements exist before adding the event listener
-//   if (barsIcon && navList) {
-//     barsIcon.addEventListener("click", () => {
-//       navList.classList.toggle("hidden--mobile");
-//     });
-//   } else {
-//     console.error("Bars icon or nav list not found.");
-//   }
-// }
+function toggleMenu() {
+  const menu = document.getElementById("navbarNav");
+  if (menu) {
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
+}
+// Call the function when the document is loaded
+document.addEventListener("DOMContentLoaded", function() {
+  const menuToggle = document.querySelector(".menu_toggle");
+  if (menuToggle) {
+    menuToggle.addEventListener("click", toggleMenu);
+  }
+});
 
+//Weather API
 router.hooks({
   before: (done, params) => {
     // We need to know what view we are on to know what data to fetch
@@ -102,51 +119,46 @@ router
   })
   .resolve();
 
-// selected planet and mission name
-document.getElementById("sub-menu").addEventListener("submit", function(event) {
-  event.preventDefault();
+// Submit Form
+window.onload = function() {
+  document
+    .getElementById("sub-menu")
+    .addEventListener("submit", function(event) {
+      event.preventDefault();
 
-  // Cache references to the elements
-  const planetInput = document.getElementById("planet");
-  const missionInput = document.getElementById("mission");
-  const resultContainer = document.getElementById("result");
+      // Get the selected planet and mission name from the form
+      const selectedPlanet = document.getElementById("planet").value;
+      const missionName = document.getElementById("mission").value;
 
-  const selectedPlanet = planetInput.value;
-  const missionName = missionInput.value;
+      // Get the results container
+      const resultsContainer = document.getElementById("result");
 
-  const resultEntry = document.createElement("div");
-  resultEntry.innerHTML = `
-    <h2>Your Selection:</h2>
-    <p>Selected Planet: ${selectedPlanet}</p>
-    <p>Mission Name: ${missionName}</p>
-    <img class="planetImage" src="${getPlanetImage(
-      selectedPlanet
-    )}" alt="Planet Image">`;
+      // Create a new div for the result
+      const resultDiv = document.createElement("div");
 
-  resultContainer.appendChild(resultEntry);
+      // Create a new image element for the selected planet
+      const planetImage = document.createElement("img");
+      planetImage.src = planetImages[selectedPlanet];
+      planetImage.alt = selectedPlanet;
 
-  // Clear input values
-  missionInput.value = "";
+      // Create a new paragraph element for the mission name
+      const missionParagraph = document.createElement("p");
+      missionParagraph.textContent = `Mission Name: ${missionName}`;
+
+      // Append the image and paragraph to the result div
+      resultDiv.appendChild(planetImage);
+      resultDiv.appendChild(missionParagraph);
+
+      // Append the result div to the results container
+      resultsContainer.appendChild(resultDiv);
+    });
+};
+
+// Future Mission
+document.querySelectorAll(".planet").forEach(planet => {
+  planet.addEventListener("click", () => {
+    planet.querySelectorAll(".mission-list").forEach(mission => {
+      mission.classList.add("active");
+    });
+  });
 });
-
-// Function to get the image URL for the selected planet
-function getPlanetImage(planet) {
-  switch (planet) {
-    case "Mercury":
-      return `${Mercury}`;
-    case "Venus":
-      return `${Venus}`;
-    case "Earth":
-      return `${Earth}`;
-    case "Mars":
-      return `${Mars}`;
-    case "Jupiter":
-      return `${Jupiter}`;
-    case "Saturn":
-      return `${Saturn}`;
-    case "Uranus":
-      return `${Uranus}`;
-    case "Neptune":
-      return `${Neptune}`;
-  }
-}

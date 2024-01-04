@@ -1,170 +1,99 @@
 import html from "html-literal";
-import Mercury from "../../assets/img/mercury.png";
-import Venus from "../../assets/img/venus.png";
-import Earth from "../../assets/img/earth.png";
-import Mars from "../../assets/img/mars.png";
-import Jupiter from "../../assets/img/jupiter.png";
-import Saturn from "../../assets/img/saturn.png";
-import Uranus from "../../assets/img/uranus.png";
-import Neptune from "../../assets/img/neptune.png";
 
 export default () => html`
   <div class="row">
     <div class="column">
-      <div id="plannedMissions" class="planet-list">
-        <h2 id="plannedMissionsTitle" class="collapsible">
-          Planned Missions!
-        </h2>
-        <ul>
-          <li>
-            <img src="${Mercury}" />
-            <h3>Mercury</h3>
-            <ul>
-              <li>test1</li>
-            </ul>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <img src="${Venus}" />
-            <h3>Venus</h3>
-            <ul>
-              <li>test1</li>
-            </ul>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <img src="${Earth}" />
-            <h3>Earth/Moon</h3>
-            <ul>
-              <li>test1</li>
-            </ul>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <img src="${Mars}" />
+      <div class="planet-list">
+        <h2 class="collapsible">Planets</h2>
+        <div id="Mercury" class="planet">
+          <h3>Mercury</h3>
+          <div id="plannedMissionsMercury" class="mission-list">
+            <h4>Planned Missions</h4>
+            <!-- Insert planned missions for Mercury here -->
+          </div>
+          <div id="currentMissionsMercury" class="mission-list">
+            <h4>Current Missions</h4>
+            <!-- Insert current missions for Mercury here -->
+          </div>
+        </div>
+        <div id="Venus" class="planet">
+          <h3>Venus</h3>
+          <div id="plannedMissionsVenus" class="mission-list">
+            <h4>Planned Missions</h4>
+            <!-- Insert planned missions for here -->
+          </div>
+          <div id="currentMissionsVenus" class="mission-list">
+            <h4>Current Missions</h4>
+            <!-- Insert current missions for here -->
+          </div>
+        </div>
+        <div id="Earth" class="planet">
+          <h3>Earth</h3>
+          <div id="plannedMissionsEarth" class="mission-list">
+            <h4>Planned Missions</h4>
+            <!-- Insert planned missions for here -->
+          </div>
+          <div id="currentMissionsEarth" class="mission-list">
+            <h4>Current Missions</h4>
+            <!-- Insert current missions for here -->
+          </div>
+        </div>
+
+          <div id="Mars" class="planet">
             <h3>Mars</h3>
-            <ul>
-              <li>test1</li>
-            </ul>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <img src="${Jupiter}" />
+            <div id="plannedMissionsMars" class="mission-list">
+              <h4>Planned Missions</h4>
+              <!-- Insert planned missions for  here -->
+            </div>
+            <div id="currentMissionsMars" class="mission-list">
+              <h4>Current Missions</h4>
+              <!-- Insert current missions for here -->
+            </div>
+          </div>
+          <div id="Jupiter" class="planet">
             <h3>Jupiter</h3>
-            <ul>
-              <li>test1</li>
-            </ul>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <img src="${Saturn}" />
+            <div id="plannedMissionsJupiter" class="mission-list">
+              <h4>Planned Missions</h4>
+              <!-- Insert planned missions for here -->
+            </div>
+            <div id="currentMissionsJupiter" class="mission-list">
+              <h4>Current Missions</h4>
+              <!-- Insert current missions for here -->
+            </div>
+          </div>
+          <div id="Saturn" class="planet">
             <h3>Saturn</h3>
-            <ul>
-              <li>test1</li>
-            </ul>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <img src="${Uranus}" />
+            <div id="plannedMissionsSaturn" class="mission-list">
+              <h4>Planned Missions</h4>
+              <!-- Insert planned missions for here -->
+            </div>
+            <div id="currentMissionsSaturn" class="mission-list">
+              <h4>Current Missions</h4>
+              <!-- Insert current missions for here -->
+            </div>
+          </div>
+          <div id="Uranus" class="planet">
             <h3>Uranus</h3>
-            <ul>
-              <li>test1</li>
-            </ul>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <img src="${Neptune}" />
+            <div id="plannedMissionsUranus" class="mission-list">
+              <h4>Planned Missions</h4>
+              <!-- Insert planned missions for here -->
+            </div>
+            <div id="currentMissionsUranus" class="mission-list">
+              <h4>Current Missions</h4>
+              <!-- Insert current missions for here -->
+            </div>
+          </div>
+          <div id="Neptune" class="planet">
             <h3>Neptune</h3>
-            <ul>
-              <li>test1</li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div class="row">
-        <div id="currentMissions" class="planet-list">
-          <h2 id="currentMissionsTitle" class="collapsible">
-            Current Planetary Missions
-          </h2>
-          <ul>
-            <li>
-              <img src="${Mercury}" />
-              <h3>Mercury</h3>
-              <ul>
-                <li>test1</li>
-              </ul>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <img src="${Venus}" />
-              <h3>Venus</h3>
-              <ul>
-                <li>test1</li>
-              </ul>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <img src="${Earth}" />
-              <h3>Earth/Moon</h3>
-              <ul>
-                <li>test1</li>
-              </ul>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <img src="${Mars}" />
-              <h3>Mars</h3>
-              <ul>
-                <li>test1</li>
-              </ul>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <img src="${Jupiter}" />
-              <h3>Jupiter</h3>
-              <ul>
-                <li>test1</li>
-              </ul>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <img src="${Saturn}" />
-              <h3>Saturn</h3>
-              <ul>
-                <li>test1</li>
-              </ul>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <img src="${Uranus}" />
-              <h3>Uranus</h3>
-              <ul>
-                <li>test1</li>
-              </ul>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <img src="${Neptune}" />
-              <h3>Neptune</h3>
-              <ul>
-                <li>test1</li>
-              </ul>
-            </li>
-          </ul>
+            <div id="plannedMissionsNeptune" class="mission-list">
+              <h4>Planned Missions</h4>
+              <!-- Insert planned missions for here -->
+            </div>
+            <div id="currentMissionsNeptune" class="mission-list">
+              <h4>Current Missions</h4>
+              <!-- Insert current missions for here -->
+            </div>
+          </div>
         </div>
       </div>
     </div>

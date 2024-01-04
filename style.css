@@ -1,8 +1,13 @@
+
+/* Variables */
 :root {
   --color-primary: #0c1e36;
   --color-blue: #192940;
   --color-timberwolf: #cdd0c8;
   --color-accent: #f9cc0b;
+}
+html {
+  scroll-behavior: smooth;
 }
 
 /* Headline */
@@ -13,7 +18,7 @@
 }
 #headline {
   height: 10dvh;
-  background-color: rgb(10, 10, 10);
+  background-color:transparent;
   color: #cdd0c8;
   flex-flow: row;
   justify-content: space-evenly;
@@ -26,65 +31,86 @@
   color: var(--color-accent);
   padding: 4px;
 }
+/* Future Missions Info*/
 h2 {
   color: var(--color-accent);
-  display: flex;
-  justify-content: flex-end ;
-}
-h3{
-  color: red;
+  justify-content: center;
+  font-size: 4dvh;
   display: flex;
 }
-/* Navigation Setup */ /* Navigation Bar */
-.menu_wrapper {
-  font-family: 'Exo 2', sans-serif;
-  background-color: #0000;
-  align-items: normal;
-  width: auto;
-  font-size: 1.5em;
-}
-.menu_wrapper .navbar ul {
+h3 {
+  color: var(--color-timberwolf);
+  display: flex;
   flex-direction: row;
-  width: 95dvw;
-  height: 10dvh;
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: nowrap;
+  justify-content: center;
 }
-.menu_wrapper .navbar li {
-  margin: 0 10px;
-}
-.menu_wrapper .navbar li a {
-  color: #cdd0c8;
-  display: flex;
-  font-weight:500;
+.planet h3 {
   text-align: center;
-  padding: 10px;
-  text-decoration: none;
   transition: all .3s;
-  align-items: center;
-  flex-direction: row;
+  display: block;
 }
-.menu_wrapper .navbar li.active a {
-  color: red;
-  border-top: 5px solid var(--color-accent);
-  border-bottom: 5px solid var(--color-accent);
-  border-radius: 20px;
+.planet h3:hover {
+  color: #cdd0c8;
+  transform: scale(1.2);
+  padding: .1dvw;
 }
-.menu_wrapper .navbar li a:hover {
-  color: red;
-  transition: .5s ease-in;
+h4{
+  color: var(--color-accent);
+  display: none;
+  justify-content: center;
+}
+.planet:hover h4 {
+  display: block;
+  text-align: center;
 }
 
+/* Navigation */
+.menu_wrapper {
+  padding: 1dvh;
+  border-bottom: 7px solid var(--color-accent);
+  background-color: transparent;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+.menu_toggle {
+  display: flex;
+  cursor: pointer;
+  color: #fff;
+  font-size: 2dvw;
+}
+.menu {
+  display: none;
+}
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+.menu li {
+  margin: 0 10px;
+}
+.menu a {
+  text-decoration: none;
+  color: #cdd0c8;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 1.5em;
+}
+/* Hover over link */
+.menu a:hover {
+  color: red;
+}
 
 /* Body & Background */
 body {
-  background: rgb(12,30,54);
+  background: linear-gradient(to top, var(--color-blue), black);
   margin: 0;
   font-family: 'Exo 2', sans-serif;
   text-align: left;
 }
+
+/* Content */
 .content {
   color: #cdd0c8;
   text-align: left;
@@ -117,11 +143,11 @@ div.content-form{
 }
 .aboutPage, .attribution {
   color: #cdd0c8;
+  text-align: left;
   margin: auto;
   padding: 1em;
   font-family: "Exo 2", sans-serif;
   font-size: 2.5em;
-  text-align: center;
 }
 .attribution{
   color: #cdd0c8;
@@ -177,6 +203,7 @@ input[type=submit]:hover {
   background-color:snow;
   color: var(--color-primary);
 }
+
 /* Submission Inform */
 #submission {
   flex-flow: wrap;
@@ -188,21 +215,21 @@ input[type=submit]:hover {
   flex-wrap: wrap;
   justify-content: center;
 }
-#sub-menu{
-flex-flow: column;
-align-items: center;
-font-family: "Exo 2", sans-serif;
-font-size: larger;
-font-weight: bold;
-display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-justify-content: center;
+#sub-menu {
+  flex-flow: wrap;
+  font-family: "Exo 2", sans-serif;
+  font-size: larger;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
 }
 .content #sub-menu #planet {
-  font-family: "Exo 2", sans-serif;
-  font-size: 2em;
+  width: 20dvw;
   text-align: center;
+  font-family: "Exo 2", sans-serif;
+  font-size: 3dvh;
 }
 fieldset {
   display: flex;
@@ -214,30 +241,29 @@ fieldset {
 /* Results */
 #result {
   text-align: center;
-  flex-flow: column;
-  justify-content: space-around;
+  flex-flow: row;
   font-weight: 500;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 #result > div {
+  flex-flow: column wrap;
   width: 15%;
   margin-bottom: 1px;
   padding: 10px;
   display: flex;
+  align-items: center;
+  flex-direction: row;
   flex-wrap: wrap;
-  flex-direction: column;
+  justify-content: space-around;
 }
 
 /* Planet image styling */
 .planetImage {
     align-self: center;
     margin-top: 5px;
-}
-#imgLost {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
 }
 img {
   height: 3em;
@@ -263,34 +289,85 @@ li{
   text-decoration: none;
   list-style-type: none;
 }
-#plannedMissions.planet-list {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-content: flex-start;
+.row {
+  width: 100%;
 }
-#currentMissions.planet-list {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-content: flex-start;
+.column {
+  flex: 1;
 }
-select {
-  box-sizing: border-box;
-  border: 4px solid #f9cc0b;
-  border-radius: 6px;
-  width: 50dvw;
-  margin: 8px 0;
-  padding: 12px 20px;
-  display: block;
+/* Hide missions by default */
+.planet .mission-list {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 1.5s ease-out;
 }
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* Show missions when the planet is hovered */
+.planet:hover .mission-list,
+.planet:hover {
+  max-height: 500px;
+  transition: max-height 1.5s ease-in;
+  background-color: transparent
+}
+.planet .mission-list.active {
+  background-color: transparent;
+}
+.hidden--mobile {
+  display: none;
 }
 
-
+/* Planet Page */
+.planet-list {
+  flex-flow: wrap;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+#Mercury, #Venus, #Earth, #Mars, #Jupiter, #Saturn, #Uranus, #Neptune{
+  color: #0c1e36;
+  border: 2px solid snow;
+  flex-flow: column wrap;
+  max-width: 200px;
+  transition: border-color 1.5s ease-in;
+  transition: border-color 2.5s ease-out;
+  display: flex;
+  flex-direction: column;
+}
+#Mercury:hover, #Venus:hover, #Earth:hover, #Mars:hover, #Jupiter:hover, #Saturn:hover, #Uranus:hover, #Neptune:hover {
+  border-color: var(--color-accent);
+  background-color: transparent;
+}
+  #Mercury{
+    background-image: url('./assets/img/mercury.png');
+    background-position: center;
+  }
+  #Venus{
+    background-position: center;
+    background-image: url('./assets/img/venus.png')
+  }
+  #Earth {
+    background-image: url('./assets/img/earth.png');
+    background-position: center;
+  }
+  #Mars{
+    background-image: url('./assets/img/mars.png');
+    background-position: center;
+  }
+  #Jupiter{
+    background-image: url('./assets/img/jupiter.png');
+    background-position: center;
+  }
+  #Saturn{
+    background-image: url('./assets/img/saturn.png');
+    background-position: center;
+  }
+  #Uranus{
+    background-image: url('./assets/img/uranus.png');
+    background-position: center;
+  }
+  #Neptune{
+    background-image: url('./assets/img/neptune.png');
+    background-position: center;
+  }
 /* Footer */
 footer {
   color: var(--color-timberwolf);
@@ -302,150 +379,37 @@ footer {
   font-weight: bold;
   text-align: -webkit-center;
 }
-#acbrn{
-  width: 20dvw;
-  height: 10dvh;
-  transition: ease-in-out;
+#acbrn {
+  width: 30dvw;
+  height: 20dvh;
 }
 /* Responsive */
-@media (max-width: 768px) {
-  #headline {
-    color: #cdd0c8;
-    flex-flow: wrap;
-    justify-content: center;
-    font-family: "Exo 2", sans-serif;
-    font-size: 10em;
-    display: flex;
-}
-#headline span {
-  color: var(--color-accent);
-  display: flex;
-  justify-content: center;
-}
-#logo {
-  width: 15dvw;
-  height: 8dvh;
-  display: flex;
-}
-  input[type="message"], select {
-    box-sizing: border-box;
-    border: 1px solid #f9cc0b;
-    border-radius: 4px;
-    width: 85%;
-    margin: 8px 0;
-    padding: 12px 20px;
-    display: block;
-}
-input[type="submit"] {
-  color: #cdd0c8;
-  cursor: pointer;
-  border: var(--color-accent) 2px solid;
-  border-radius: 5px;
-  background-color: var(--color-primary);
-  justify-content: center;
-  width: 25%;
-  margin: 8px 10em;
-  padding: 19px 30px;
-  font-size: xx-large;
-  font-weight: bold;
-  display: flex;
-}
-.navbar {
-  background-color: transparent;
-  border-bottom: 2px solid #f9cc0b;
-  justify-content: space-between;
-  align-items: center;
-  padding: 3px;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  font-size: 0.41em;
-}
-.menu_wrapper {
-  font-family: 'Exo 2', sans-serif;
-  background-color: #0000;
-  align-items: normal;
-  width: auto;
-  display: flex;
-  font-size: 2.0em;
-}
-.menu_wrapper .navbar ul {
-  flex-direction: row;
-  width: 95dvw;
-  height: 10dvh;
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: nowrap;
-}
-.menu_wrapper .navbar li {
-  margin: 0 10px;
-}
-.menu_wrapper .navbar li a {
-  color: #cdd0c8;
-  display: flex;
-  padding: 10px;
-  text-decoration: none;
-  transition: all .3s;
-  align-items: center;
-  flex-direction: row;
-}
-.menu_wrapper .navbar li.active a {
-  color: red;
-  border-top: 5px solid var(--color-accent);
-  border-bottom: 5px solid var(--color-accent);
-  border-radius: 20px;
-}
-.menu_wrapper .navbar li a:hover {
-  color: red;
-  transition: .5s ease-in;
-}
-li {
-  color: #cdd0c8;
-  text-align: center;
-  padding: 0.8em;
-  font-size: larger;
-  text-decoration: none;
-  list-style-type: none;
-  display: flex;
-}
-#footer {
-  color: var(--color-timberwolf);
-  background-color: var(--color-primary);
-  border-top: 1px solid #f9cc0b;
+.container {
   width: 100%;
-  padding: 25px 5px 20px;
-  font-family: "Exo 2", sans-serif;
-  font-weight: bold;
-  text-align: center;
+  padding: 0 15px;
+  margin: 0 auto;
 }
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
 }
-@media (min-width: 550px) {
-    nav > .fa-bars {
-      display: flex;
-      flex-wrap: nowrap;
-      flex-direction: column;
-    }
-  .header {
-    font-size: 25%;
-    width: 100%;
-    position: static;
-    height: auto;
-    overflow: visible;
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
   }
-  .content {
-      margin-left: 0;
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
   }
-  #footer {
-    color: var(--color-timberwolf);
-    background-color: var(--color-primary);
-    border-top: 1px solid #f9cc0b;
-    width: 100%;
-    padding: 25px 5px 20px;
-    font-family: "Exo 2", sans-serif;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 35em;
-    height: 2em
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
   }
 }
