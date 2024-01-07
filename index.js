@@ -23,22 +23,23 @@ function render(state = store.Home) {
     ${Footer()}
   `;
   router.updatePageLinks();
-  // afterRender();
+  afterRender();
 }
-// function afterRender() {
-//   const barsIcon = document.querySelector(".fa-bars");
-//   const navList = document.querySelector("nav > ul");
 
-//   // Check if both elements exist before adding the event listener
-//   if (barsIcon && navList) {
-//     barsIcon.addEventListener("click", () => {
-//       navList.classList.toggle("hidden--mobile");
-//     });
-//   } else {
-//     console.error("Bars icon or nav list not found.");
-//   }
-// }
+function afterRender() {
+  // Add the toggleMenu function
+  function toggleMenu() {
+    var navbarNav = document.getElementById("navbarNav");
+    if (navbarNav.style.display === "none") {
+      navbarNav.style.display = "block";
+    } else {
+      navbarNav.style.display = "none";
+    }
+  }
 
+  // Add the event listener for the menu toggle button
+  document.getElementById("menu_toggle").addEventListener("click", toggleMenu);
+}
 router.hooks({
   before: (done, params) => {
     // We need to know what view we are on to know what data to fetch
@@ -106,29 +107,45 @@ router
 document.getElementById("sub-menu").addEventListener("submit", function(event) {
   event.preventDefault();
 
-  // Cache references to the elements
-  const planetInput = document.getElementById("planet");
-  const missionInput = document.getElementById("mission");
-  const resultContainer = document.getElementById("result");
+  // Get the selected planet
+  const selectedPlanet = document.querySelector('input[name="planet"]:checked')
+    .value;
 
-  const selectedPlanet = planetInput.value;
-  const missionName = missionInput.value;
+  // Get the mission name
+  const missionName = document.getElementById("mission").value;
 
-  const resultEntry = document.createElement("div");
-  resultEntry.innerHTML = `
-    <h2>Your Selection:</h2>
-    <p>Selected Planet: ${selectedPlanet}</p>
-    <p>Mission Name: ${missionName}</p>
-    <img class="planetImage" src="${getPlanetImage(
-      selectedPlanet
-    )}" alt="Planet Image">`;
+  // Get the table
+  const table = document.querySelector("#sub-menu table");
 
-  resultContainer.appendChild(resultEntry);
+  // Create a new table row
+  const resultRow = document.createElement("tr");
+
+  // Create table data for the mission name and selected planet
+  const missionData = document.createElement("td");
+  missionData.textContent = missionName;
+
+  const planetData = document.createElement("td");
+  planetData.textContent = selectedPlanet;
+
+  // Create an img element for the planet image
+  const planetImage = document.createElement("img");
+  planetImage.src = getPlanetImage(selectedPlanet);
+  planetImage.alt = selectedPlanet;
+
+  const imageCell = document.createElement("td");
+  imageCell.appendChild(planetImage);
+
+  // Append the table data to the table row
+  resultRow.appendChild(missionData);
+  resultRow.appendChild(planetData);
+  resultRow.appendChild(imageCell);
+
+  // Append the table row to the table
+  table.appendChild(resultRow);
 
   // Clear input values
-  missionInput.value = "";
+  document.getElementById("mission").value = "";
 });
-
 // Function to get the image URL for the selected planet
 function getPlanetImage(planet) {
   switch (planet) {

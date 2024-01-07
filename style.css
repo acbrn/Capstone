@@ -31,12 +31,29 @@ html {
   color: var(--color-accent);
   padding: 4px;
 }
-/* Future Missions Info*/
-h2 {
+h2.collapsible {
   color: var(--color-accent);
-  justify-content: center;
-  font-size: 4dvh;
+  text-align: center;
+  font-size: 2dvw;
+  text-decoration: none;
+  list-style-type: none;
+}
+/* Future Missions Info*/
+p {
+  color: #cdd0c8;
+  text-align: center;
+  font-size: 1dvw;
+  text-decoration: none;
+  list-style-type: none;
+}
+tr {
+  border-bottom: 5px solid var(--color-accent);
+  background-color: #0000;
+  align-items: center;
+  padding: 15px;
   display: flex;
+  width: 25dvw;
+  justify-content: center;
 }
 h3 {
   color: var(--color-timberwolf);
@@ -56,7 +73,7 @@ h3 {
 }
 h4{
   color: var(--color-accent);
-  display: none;
+  display: flex;
   justify-content: center;
 }
 .planet:hover h4 {
@@ -92,10 +109,10 @@ h4{
   margin: 0 10px;
 }
 .menu a {
-  text-decoration: none;
   color: #cdd0c8;
-  font-family: 'Exo 2', sans-serif;
-  font-size: 1.5em;
+  font-family: "Exo 2", sans-serif;
+  font-size: 1.5dvh;
+  text-decoration: none;
 }
 /* Hover over link */
 .menu a:hover {
@@ -187,14 +204,13 @@ input[type=message], select{
 input[type="submit"] {
   color: #cdd0c8;
   cursor: pointer;
-  border-bottom: var(--color-accent) 4px solid;
-  border-top: var(--color-accent) 4px solid;
+  border: var(--color-accent) 4px solid;
   background-color: var(--color-primary);
   border-radius: 25px;
   justify-content: center;
   width: 45%;
-  margin: 8px 10em;
-  padding: 19px 30px;
+  margin: 5px 5em;
+  padding: 5px 5px;
   font-size: xx-large;
   font-weight: bold;
   display: flex;
@@ -205,6 +221,27 @@ input[type=submit]:hover {
 }
 
 /* Submission Inform */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+th, td {
+  padding: 8px;
+}
+tr:nth-child(2n) {
+  width: 25dvw;
+  background-color: #0000;
+}
+th {
+  color: #fff;
+  background-color: transparent;
+  padding-top: 12px;
+  padding-bottom: 20px;
+}
 #submission {
   flex-flow: wrap;
   align-items: center;
@@ -216,14 +253,15 @@ input[type=submit]:hover {
   justify-content: center;
 }
 #sub-menu {
-  flex-flow: wrap;
+  flex-flow: column wrap;
   font-family: "Exo 2", sans-serif;
   font-size: larger;
   font-weight: bold;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
   align-items: center;
-  align-content: center;
 }
 .content #sub-menu #planet {
   width: 20dvw;
@@ -262,15 +300,11 @@ fieldset {
 
 /* Planet image styling */
 .planetImage {
-    align-self: center;
-    margin-top: 5px;
+  height: 3dvh;
+  width: 3dvw;
+  display: block;
 }
-img {
-  height: 3em;
-  width: 4em;
-  padding: 0.1em;
-  border-style: none;
-}
+
 ul {
   flex-direction: column;
   display: flex;
@@ -317,10 +351,10 @@ li{
 
 /* Planet Page */
 .planet-list {
+  height: 15dvh;
   flex-flow: wrap;
+  justify-content: space-evenly;
   display: flex;
-  flex-direction: column;
-  align-content: center;
 }
 #Mercury, #Venus, #Earth, #Mars, #Jupiter, #Saturn, #Uranus, #Neptune{
   color: #0c1e36;
@@ -332,13 +366,10 @@ li{
   display: flex;
   flex-direction: column;
 }
-#Mercury:hover, #Venus:hover, #Earth:hover, #Mars:hover, #Jupiter:hover, #Saturn:hover, #Uranus:hover, #Neptune:hover {
-  border-color: var(--color-accent);
-  background-color: transparent;
-}
   #Mercury{
     background-image: url('./assets/img/mercury.png');
     background-position: center;
+    background-size: cover;
   }
   #Venus{
     background-position: center;

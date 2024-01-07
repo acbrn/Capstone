@@ -2,6 +2,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import router from "./routers/submission.js";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -49,6 +50,8 @@ const logging = (request, response, next) => {
 };
 
 app.use(cors);
+app.use(express.json());
+app.use("/", router);
 app.use(express.json()).use(logging);
 
 // Handle the request with HTTP GET method from http://localhost:4040/status
@@ -59,4 +62,4 @@ app.get("/status", (request, response) => {
 
 // Tell the Express app to start listening
 // Let the humans know I am running and listening on 4040
-app.listen(4040, () => console.log("Listening on port 4040"));
+app.listen(PORT, () => console.log("Listening on port 4040"));
