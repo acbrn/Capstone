@@ -12,13 +12,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "assert": "^2.1.0",
     "buffer": "^6.0.3",
-    "console-browserify": "^1.2.0",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.3.1",
-    "node": "^18.17.0 || >=20.5.0",
+    "node": "^16.13.1",
     "nodemon": "^3.0.2",
     "prettier": "1.19.1"
   },
@@ -28,8 +26,7 @@
     "express": "^4.18.2",
     "html-literal": "^1.1.0",
     "lodash": "^4.17.21",
-    "mongodb": "^6.3.0",
-    "mongoose": "^6.12.4",
+    "mongoose": "^6.12.5",
     "navigo": "^8.11.1",
     "parcel": "^2.10.3",
     "yargs-parser": ">=13.1.2"

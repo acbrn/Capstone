@@ -1,10 +1,10 @@
 import html from "html-literal";
 
 export default () => html`
+    <h2 class="collapsible">Planets</h2>
   <div class="row">
     <div class="column">
       <div class="planet-list">
-        <h2 class="collapsible">Planets</h2>
         <div id="Mercury" class="planet">
           <h3>Mercury</h3>
           <div id="plannedMissionsMercury" class="mission-list">

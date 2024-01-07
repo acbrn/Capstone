@@ -1,19 +1,20 @@
 import html from "html-literal";
 
-export default () => html`
+export default state => html`
   <div class="content" id="submission">
     <form class="sub-menu" id="sub-menu">
-      <label for="planet">Select a Planet:</label>
-      <select id="planet" name="planet">
-        <option value="Mercury">Mercury</option>
-        <option value="Venus">Venus</option>
-        <option value="Earth">Earth</option>
-        <option value="Mars">Mars</option>
-        <option value="Jupiter">Jupiter</option>
-        <option value="Saturn">Saturn</option>
-        <option value="Uranus">Uranus</option>
-        <option value="Neptune">Neptune</option>
-      </select>
+      <table>
+        <tr>
+          <th>Select</th>
+          <th>Planet</th>
+        </tr>
+        ${state.planets
+          .map(planet => {
+            return `<tr><td><input type="radio" id="${planet}" name="planet" value="${planet}" /></td><td>${planet}</td></tr>`;
+          })
+          .join("")}
+      </table>
+
       <br /><br />
       <label for="mission">Mission Name:</label>
       <input type="text" id="mission" name="mission" required />
