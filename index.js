@@ -25,9 +25,8 @@ function render(state = store.Home) {
   router.updatePageLinks();
   afterRender();
 }
-
 function afterRender() {
-  // Add the toggleMenu function
+  // selected planet and mission name
   function toggleMenu() {
     var navbarNav = document.getElementById("navbarNav");
     if (navbarNav.style.display === "none") {
@@ -35,54 +34,58 @@ function afterRender() {
     } else {
       navbarNav.style.display = "none";
     }
+    document
+      .getElementById("menu_toggle")
+      .addEventListener("click", toggleMenu);
   }
+  toggleMenu();
+  document
+    .getElementById("sub-menu")
+    .addEventListener("submit", function(event) {
+      event.preventDefault();
 
-  // Add the event listener for the menu toggle button
-  document.getElementById("menu_toggle").addEventListener("click", toggleMenu);
+      // Get the selected planet
+      const selectedPlanet = document.querySelector(
+        'input[name="planet"]:checked'
+      ).value;
+
+      // Get the mission name
+      const missionName = document.getElementById("mission").value;
+
+      // Get the table
+      const table = document.querySelector("#sub-menu table");
+
+      // Create a new table row
+      const resultRow = document.createElement("tr");
+
+      // Create table data for the mission name and selected planet
+      const missionData = document.createElement("td");
+      missionData.textContent = missionName;
+
+      const planetData = document.createElement("td");
+      planetData.textContent = selectedPlanet;
+
+      // Create an img element for the planet image
+      const planetImage = document.createElement("img");
+      planetImage.src = getPlanetImage(selectedPlanet);
+      planetImage.alt = selectedPlanet;
+
+      const imageCell = document.createElement("td");
+      imageCell.appendChild(planetImage);
+
+      // Append the table data to the table row
+      resultRow.appendChild(missionData);
+      resultRow.appendChild(planetData);
+      resultRow.appendChild(imageCell);
+
+      // Append the table row to the table
+      table.appendChild(resultRow);
+
+      // Clear input values
+      document.getElementById("mission").value = "";
+    });
 }
-// selected planet and mission name
-document.getElementById("sub-menu").addEventListener("submit", function(event) {
-  event.preventDefault();
 
-  // Get the selected planet
-  const selectedPlanet = document.querySelector('input[name="planet"]:checked')
-    .value;
-
-  // Get the mission name
-  const missionName = document.getElementById("mission").value;
-
-  // Get the table
-  const table = document.querySelector("#sub-menu table");
-
-  // Create a new table row
-  const resultRow = document.createElement("tr");
-
-  // Create table data for the mission name and selected planet
-  const missionData = document.createElement("td");
-  missionData.textContent = missionName;
-
-  const planetData = document.createElement("td");
-  planetData.textContent = selectedPlanet;
-
-  // Create an img element for the planet image
-  const planetImage = document.createElement("img");
-  planetImage.src = getPlanetImage(selectedPlanet);
-  planetImage.alt = selectedPlanet;
-
-  const imageCell = document.createElement("td");
-  imageCell.appendChild(planetImage);
-
-  // Append the table data to the table row
-  resultRow.appendChild(missionData);
-  resultRow.appendChild(planetData);
-  resultRow.appendChild(imageCell);
-
-  // Append the table row to the table
-  table.appendChild(resultRow);
-
-  // Clear input values
-  document.getElementById("mission").value = "";
-});
 // Function to get the image URL for the selected planet
 function getPlanetImage(planet) {
   switch (planet) {
