@@ -40,7 +40,7 @@ const planetSchema = new mongoose.Schema({
     required: true,
     min: 0
   },
-  missions: [missionSchema] // Use the missionSchema for each mission
+  missions: [missionSchema] // array of mission sub-documents
 });
 
 const Planet = mongoose.model("Planet", planetSchema);
