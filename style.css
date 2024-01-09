@@ -97,7 +97,7 @@ h4{
   font-size: 2dvw;
 }
 .menu {
-  display: none;
+  display: block;
 }
 .menu ul {
   list-style: none;
@@ -221,7 +221,7 @@ input[type=submit]:hover {
 }
 
 /* Submission Inform */
-table {
+table.planet-table {
   border-collapse: collapse;
   width: 100%;
   display: flex;
@@ -232,9 +232,13 @@ table {
 th, td {
   padding: 8px;
 }
-tr:nth-child(2n) {
-  width: 25dvw;
-  background-color: #0000;
+a {
+  display: flex;
+  background-color: transparent;
+  color: var(--color-accent);
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 th {
   color: #fff;
@@ -242,40 +246,8 @@ th {
   padding-top: 12px;
   padding-bottom: 20px;
 }
-#submission {
-  flex-flow: wrap;
-  align-items: center;
-  font-family: "Exo 2", sans-serif;
-  font-size: x-large;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-#sub-menu {
-  flex-flow: column wrap;
-  font-family: "Exo 2", sans-serif;
-  font-size: larger;
-  font-weight: bold;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-}
-.content #sub-menu #planet {
-  width: 20dvw;
-  text-align: center;
-  font-family: "Exo 2", sans-serif;
-  font-size: 3dvh;
-}
-fieldset {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+
+
 /* Results */
 #result {
   text-align: center;

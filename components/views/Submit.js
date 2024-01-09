@@ -1,27 +1,36 @@
 import html from "html-literal";
 
 export default state => html`
-  <div class="content" id="submission">
-    <form class="sub-menu" id="sub-menu">
-      <table>
-        <tr>
-          <th>Select</th>
-          <th>Planet</th>
-        </tr>
-        ${state.planets
-          .map(planet => {
-            return `<tr><td><input type="radio" id="${planet}" name="planet" value="${planet}" /></td><td>${planet}</td></tr>`;
-          })
-          .join("")}
+<main>
+    <div class="submit">
+      <a class="add-planet-btn-form" href="/Form">Mission Name</a>
+      <table class="planet-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Moons</th>
+            <th>Missions</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          ${state.planets
+            .map(planet => {
+              `
+            <tr key="${planet.id}">
+              <td>${planet.name}</td>
+              <td>${planet.type}</td>
+              <td>${planet.moons}</td>
+              <td>${planet.distanceFromSun}</td>
+              <td>${planet.missions}</td>
+              <td><span>delete_forever</span></td>
+            </tr>
+            `;
+            })
+            .join("")}
+        </tbody>
       </table>
-
-      <br /><br />
-      <label for="mission">Mission Name:</label>
-      <input type="text" id="mission" name="mission" required />
-      <br /><br />
-      <input type="submit" value="Submit" />
-    </form>
-
-    <div id="result"></div>
-  </div>
+    <div>
+  </main>
 `;
