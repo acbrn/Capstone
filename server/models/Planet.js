@@ -3,13 +3,8 @@ import mongoose from "mongoose";
 const missionSchema = new mongoose.Schema({
   type: {
     type: String,
-    validate: {
-      validator: function(v) {
-        // Check if the mission name is a string
-        return typeof v === "string";
-      },
-      message: props => `${props.value} is not a valid mission name!`
-    }
+    validate: /^[A-Za-z0-9 ]*$/,
+    message: props => `${props.value} is not a valid planet name!`
   }
 });
 
@@ -17,13 +12,8 @@ const planetSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    validate: {
-      validator: function(v) {
-        // return `true` if `v` is a non-empty string, `false` otherwise
-        return typeof v === "string" && v.length > 0;
-      },
-      message: props => `${props.value} is not a valid planet name!`
-    }
+    validate: /^[A-Za-z0-9 ]*$/,
+    message: props => `${props.value} is not a valid planet name!`
   },
   type: {
     type: String,

@@ -6,14 +6,10 @@ import router from "./routers/submission.js";
 
 // Load environment variables from .env file
 dotenv.config();
-
-// get the PORT from the environment variables, OR use 4040 as default
-
 // Initialize the Express application
 const app = express();
 
 mongoose.connect(process.env.MONGODB, {
-  // Configuration options to remove deprecation warnings, just include them to remove clutter
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -50,9 +46,8 @@ const logging = (request, response, next) => {
 };
 
 app.use(cors);
-app.use(express.json());
+app.use(express.json()).logging(logging);
 app.use("/", router);
-app.use(express.json()).use(logging);
 
 // Handle the request with HTTP GET method from http://localhost:4040/status
 app.get("/status", (request, response) => {

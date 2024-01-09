@@ -2,7 +2,7 @@ import html from "html-literal";
 
 export default (links, state) => html`
   <div class="menu_wrapper">
-    <div class="menu_toggle" id="menu_toggle" onclick="toggleMenu()">
+    <div class="menu_toggle" id="menu_toggle" onclick="toggleMenu">
       <span class="menu_icon">☰</span> Menu
     </div>
 

@@ -1,4 +1,5 @@
 export default {
   header: "Submit Mission Name Ideas",
-  view: "Submit"
+  view: "Submit",
+  planet: []
 };
