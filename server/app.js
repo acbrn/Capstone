@@ -1,8 +1,7 @@
-// 'Import' the Express module instead of http
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import router from "./routers/submission.js";
+import router from "./routers/planets.js";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -14,6 +13,7 @@ mongoose.connect(process.env.MONGODB, {
   useUnifiedTopology: true
 });
 const db = mongoose.connection;
+const PORT = process.env.PORT || 4040;
 
 db.on("error", console.error.bind(console, "Connection Error:"));
 db.once(
@@ -21,7 +21,6 @@ db.once(
   console.log.bind(console, "Successfully opened connection to Mongo!")
 );
 
-const PORT = process.env.PORT || 4040;
 // CORS Middleware
 const cors = (req, res, next) => {
   res.setHeader(
@@ -37,24 +36,15 @@ const cors = (req, res, next) => {
   next();
 };
 
-// Logging Middleware
-const logging = (request, response, next) => {
-  console.log(
-    `${request.method} ${request.url} ${new Date().toLocaleString("en-us")}`
-  );
-  next();
-};
-
 app.use(cors);
-app.use(express.json()).logging(logging);
+app.use(express.json());
 app.use("/", router);
 
-// Handle the request with HTTP GET method from http://localhost:4040/status
 app.get("/status", (request, response) => {
   // End and return the response
   response.send(JSON.stringify({ message: "Service healthy" }));
 });
 
-// Tell the Express app to start listening
-// Let the humans know I am running and listening on 4040
-app.listen(PORT, () => console.log("Listening on port 4040"));
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
+});

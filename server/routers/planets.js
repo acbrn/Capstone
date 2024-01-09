@@ -3,6 +3,16 @@ import Planet from "../models/Planet.js";
 
 const router = Router();
 
+router.get("/", async (request, response, next) => {
+  try {
+    const query = request.query;
+    const data = await Planet.find(query);
+    response.json(data);
+  } catch (error) {
+    console.log(error);
+    return response.status(500).json({ error: "Something went wrong" });
+  }
+});
 // Create planet route handles "/planets/"
 router.post("/", async (request, response) => {
   try {

@@ -13,6 +13,13 @@ import Saturn from "./assets/img/saturn.png";
 import Uranus from "./assets/img/uranus.png";
 import Neptune from "./assets/img/neptune.png";
 
+let PLANET_API_URL;
+
+if (process.env.PLANET_API_URL) {
+  PLANET_API_URL = process.env.PLANET_API_URL || "http://localhost:4040";
+} else {
+  console.log("Missing .env Falling back to PLANET_API_URL.");
+}
 const router = new Navigo("/");
 
 function render(state = store.Home) {
@@ -23,90 +30,30 @@ function render(state = store.Home) {
     ${Footer()}
   `;
   router.updatePageLinks();
-  afterRender();
-}
-function afterRender() {
-  // selected planet and mission name
-  function toggleMenu() {
-    var navbarNav = document.getElementById("navbarNav");
-    if (navbarNav.style.display === "none") {
-      navbarNav.style.display = "block";
-    } else {
-      navbarNav.style.display = "none";
-    }
-    document
-      .getElementById("menu_toggle")
-      .addEventListener("click", toggleMenu);
-  }
-  toggleMenu();
-  document
-    .getElementById("sub-menu")
-    .addEventListener("submit", function(event) {
+  if (state.view === "Form") {
+    document.getElementById("").addEventListener("submit", event => {
       event.preventDefault();
-
-      // Get the selected planet
-      const selectedPlanet = document.querySelector(
-        'input[name="planet"]:checked'
-      ).value;
-
-      // Get the mission name
-      const missionName = document.getElementById("mission").value;
-
-      // Get the table
-      const table = document.querySelector("#sub-menu table");
-
-      // Create a new table row
-      const resultRow = document.createElement("tr");
-
-      // Create table data for the mission name and selected planet
-      const missionData = document.createElement("td");
-      missionData.textContent = missionName;
-
-      const planetData = document.createElement("td");
-      planetData.textContent = selectedPlanet;
-
-      // Create an img element for the planet image
-      const planetImage = document.createElement("img");
-      planetImage.src = getPlanetImage(selectedPlanet);
-      planetImage.alt = selectedPlanet;
-
-      const imageCell = document.createElement("td");
-      imageCell.appendChild(planetImage);
-
-      // Append the table data to the table row
-      resultRow.appendChild(missionData);
-      resultRow.appendChild(planetData);
-      resultRow.appendChild(imageCell);
-
-      // Append the table row to the table
-      table.appendChild(resultRow);
-
-      // Clear input values
-      document.getElementById("mission").value = "";
+      const inputs = event.target.elements;
+      const planetaryData = {
+        name: inputs.name.value,
+        type: inputs.type.value,
+        moons: inputs.moons.value,
+        missions: inputs.missions.value
+      };
+      console.log(planetaryData);
+      axios
+        .post("/api/planets", planetaryData)
+        .then(response => {
+          store.Planets.planets.push(response.data);
+          router.navigate("/planets");
+        })
+        .catch(error => {
+          console.log(error);
+        });
     });
-}
-
-// Function to get the image URL for the selected planet
-function getPlanetImage(planet) {
-  switch (planet) {
-    case "Mercury":
-      return `${Mercury}`;
-    case "Venus":
-      return `${Venus}`;
-    case "Earth":
-      return `${Earth}`;
-    case "Mars":
-      return `${Mars}`;
-    case "Jupiter":
-      return `${Jupiter}`;
-    case "Saturn":
-      return `${Saturn}`;
-    case "Uranus":
-      return `${Uranus}`;
-    case "Neptune":
-      return `${Neptune}`;
   }
 }
+
 router.hooks({
   before: (done, params) => {
     // We need to know what view we are on to know what data to fetch
@@ -119,7 +66,6 @@ router.hooks({
       // New Case for the Home View
       case "Home":
         axios
-          // Get request to retrieve the current weather data using the API key and providing a city name
           .get(
             `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.OPEN_WEATHER_MAP_API_KEY}&q=iowa%20city`
           )
@@ -137,8 +83,20 @@ router.hooks({
             };
             done();
           })
-          .catch(err => {
-            console.log(err);
+          .catch(error => {
+            console.log(error);
+            done();
+          });
+        break;
+      case "Planets":
+        axios
+          .get("/api/planets")
+          .then(response => {
+            store.Planets.planets = response.data;
+            done();
+          })
+          .catch(error => {
+            console.log(error);
             done();
           });
         break;
