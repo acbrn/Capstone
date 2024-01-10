@@ -9,6 +9,7 @@ const missionSchema = new mongoose.Schema({
 
 const planetSchema = new mongoose.Schema({
   name: {
+    type: String,
     enum: [
       "Mercury",
       "Venus",
@@ -22,25 +23,7 @@ const planetSchema = new mongoose.Schema({
       "Ceres"
     ]
   },
-  type: {
-    enum: ["Terrestrial", "Gas Giant", "Ice Giant", "Dwarf Planet", "Asteroid"]
-  },
-  moons:{
-    type: Number,
-    enum: [
-      "Mercury": 0,
-      "Venus": 0,
-      "Earth": 1,
-      "Mars": 2,
-      "Jupiter": 79,
-      "Saturn": 82,
-      "Uranus": 27,
-      "Neptune": 14,
-      "Pluto": 5,
-      "Ceres": 0
-    ]
-  },
-  missions: [missionSchema], // array of mission sub-documents
+  missions: [missionSchema]
 });
 
 const Planet = mongoose.model("Planet", planetSchema);
