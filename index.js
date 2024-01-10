@@ -20,110 +20,116 @@ if (process.env.PLANET_API_URL) {
 } else {
   console.log("Missing .env Falling back to PLANET_API_URL.");
 }
-const router = new Navigo("/");
+document.addEventListener("DOMContentLoaded", function() {
+  const router = new Navigo("/");
 
-function render(state = store.Home) {
-  document.querySelector("#root").innerHTML = `
-    ${Header(state)}
-    ${Nav(store.Links, state)}
-    ${Main(state)}
-    ${Footer()}
-  `;
-  router.updatePageLinks();
-  if (state.view === "Form") {
-    document.getElementById("").addEventListener("submit", event => {
-      event.preventDefault();
-      const inputs = event.target.elements;
-      const planetaryData = {
-        name: inputs.name.value,
-        type: inputs.type.value,
-        moons: inputs.moons.value,
-        missions: inputs.missions.value
-      };
-      console.log(planetaryData);
-      axios
-        .post("/api/planets", planetaryData)
-        .then(response => {
-          store.Planets.planets.push(response.data);
-          router.navigate("/planets");
-        })
-        .catch(error => {
-          console.log(error);
+  function render(state = store.Home) {
+    document.querySelector("#root").innerHTML = `
+      ${Header(state)}
+      ${Nav(store.Links, state)}
+      ${Main(state)}
+      ${Footer()}
+    `;
+    renderPlanetaryForm(state);
+    router.updatePageLinks();
+  }
+  function renderPlanetaryForm(state = store.Form) {
+    if (state.view === "Form") {
+      const formElement = document.getElementById("planet-form");
+      if (formElement) {
+        formElement.addEventListener("submit", event => {
+          event.preventDefault();
+          handlePlanetaryFormSubmit(event.target.elements);
         });
-    });
-  }
-}
-
-router.hooks({
-  before: (done, params) => {
-    // We need to know what view we are on to know what data to fetch
-    const view =
-      params && params.data && params.data.view
-        ? capitalize(params.data.view)
-        : "Home";
-    // Add a switch case statement to handle multiple routes
-    switch (view) {
-      // New Case for the Home View
-      case "Home":
-        axios
-          .get(
-            `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.OPEN_WEATHER_MAP_API_KEY}&q=iowa%20city`
-          )
-          .then(response => {
-            // Convert Kelvin to Fahrenheit since OpenWeatherMap does provide otherwise
-            const kelvinToFahrenheit = kelvinTemp =>
-              Math.round((kelvinTemp - 273.15) * (9 / 5) + 32);
-
-            // Create an object to be stored in the Home state from the response
-            store.Home.weather = {
-              city: response.data.name,
-              temp: kelvinToFahrenheit(response.data.main.temp),
-              feelsLike: kelvinToFahrenheit(response.data.main.feels_like),
-              description: response.data.weather[0].main
-            };
-            done();
-          })
-          .catch(error => {
-            console.log(error);
-            done();
-          });
-        break;
-      case "Planets":
-        axios
-          .get("/api/planets")
-          .then(response => {
-            store.Planets.planets = response.data;
-            done();
-          })
-          .catch(error => {
-            console.log(error);
-            done();
-          });
-        break;
-      default:
-        done();
-    }
-  },
-  already: params => {
-    const view =
-      params && params.data && params.data.view
-        ? capitalize(params.data.view)
-        : "Home";
-
-    render(store[view]);
-  }
-});
-router
-  .on({
-    "/": () => render(),
-    ":view": params => {
-      let view = capitalize(params.data.view);
-      if (view in store) {
-        render(store[view]);
       } else {
-        render(store.Viewnotfound);
-        console.log(`View ${view} not defined`);
+        console.error("Form with ID 'planet-form' not found");
       }
     }
-  })
-  .resolve();
+  }
+
+  function handlePlanetaryFormSubmit(inputs) {
+    const planetaryData = {
+      name: inputs.name.value,
+      type: inputs.type.value,
+      planet: inputs.planet.value,
+      missions: inputs.missions.value
+    };
+    console.log(planetaryData);
+    axios.get(``).catch(error => {
+      console.log(error);
+    });
+  }
+  router.hooks({
+    before: (done, params) => {
+      // We need to know what view we are on to know what data to fetch
+      const view =
+        params && params.data && params.data.view
+          ? capitalize(params.data.view)
+          : "Home";
+      // Add a switch case statement to handle multiple routes
+      switch (view) {
+        // New Case for the Home View
+        case "Home":
+          axios
+            .get(
+              `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.OPEN_WEATHER_MAP_API_KEY}&q=iowa%20city`
+            )
+            .then(response => {
+              // Convert Kelvin to Fahrenheit since OpenWeatherMap does provide otherwise
+              const kelvinToFahrenheit = kelvinTemp =>
+                Math.round((kelvinTemp - 273.15) * (9 / 5) + 32);
+
+              // Create an object to be stored in the Home state from the response
+              store.Home.weather = {
+                city: response.data.name,
+                temp: kelvinToFahrenheit(response.data.main.temp),
+                feelsLike: kelvinToFahrenheit(response.data.main.feels_like),
+                description: response.data.weather[0].main
+              };
+              done();
+            })
+            .catch(error => {
+              console.log(error);
+              done();
+            });
+          break;
+        case "Planets":
+          axios
+            .get("/api/planets")
+            .then(response => {
+              store.Planets.planets = response.data;
+              done();
+            })
+            .catch(error => {
+              console.log(error);
+              done();
+            });
+          break;
+        default:
+          done();
+      }
+    },
+    already: params => {
+      const view =
+        params && params.data && params.data.view
+          ? capitalize(params.data.view)
+          : "Home";
+
+      render(store[view]);
+    }
+  });
+  router
+    .on({
+      "/": () => render(),
+      ":view": params => {
+        let view = capitalize(params.data.view);
+        if (view in store) {
+          render(store[view]);
+        } else {
+          render(store.Viewnotfound);
+          console.log(`View ${view} not defined`);
+        }
+      }
+    })
+    .resolve();
+});

@@ -1,6 +1,6 @@
 import html from "html-literal";
 
-export default state => html`
+export default () => html`
   <main>
     <div class="container">
       <div class="planet-form">
@@ -13,41 +13,34 @@ export default state => html`
                 id="name"
                 type="text"
                 name="name"
-                placeholder="Name"
+                placeholder="Your Name"
                 required
               />
             </div>
             <div class="less">
-              <label for="type">Type</label>
+              <label for="missionname">Mission Name</label>
               <input
-                id="type"
+                id="missionname"
                 type="text"
-                name="type"
-                placeholder="Type"
+                name="missions"
+                placeholder="Mission Name"
                 required
               />
             </div>
           </div>
           <div class="row">
             <div class="input-box">
-              <label for="moons">Moons</label>
-              <input
-                id="moons"
-                type="number"
-                name="moons"
-                placeholder="Number of Moons"
-                required
-              />
-            </div>
-            <div class="input-box">
-              <label for="missions">Missions</label>
-              <input
-                type="text"
-                name="missions"
-                id="missions"
-                placeholder="Enter mission names"
-                required
-              />
+              <label for="planet">Planet</label>
+              <select id="planet" name="planet" required>
+                <option value="">Select a Planet</option>
+                <option value="mercury">Mercury</option>
+                <option value="venus">Venus</option>
+                <option value="earth">Earth</option>
+                <option value="mars">Mars</option>
+                <option value="jupiter">Jupiter</option>
+                <option value="saturn">Saturn</option>
+                <option value="uranus">Uranus</option>
+              </select>
             </div>
           </div>
           <div class="submit-button">

@@ -37,8 +37,8 @@ const cors = (req, res, next) => {
 };
 
 app.use(cors);
+app.use("/planets", router);
 app.use(express.json());
-app.use("/", router);
 
 app.get("/status", (request, response) => {
   // End and return the response
