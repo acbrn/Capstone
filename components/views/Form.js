@@ -2,55 +2,32 @@ import html from "html-literal";
 
 export default () => html`
   <main>
-    <div class="container">
-      <div class="planet-form">
-        <h1>Add New Planet</h1>
-        <form id="planet-form">
-          <div class="row">
-            <div class="more">
-              <label for="name">Name</label>
-              <input
-                id="name"
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                required
-              />
-            </div>
-            <div class="less">
-              <label for="missionname">Mission Name</label>
-              <input
-                id="missionname"
-                type="text"
-                name="missions"
-                placeholder="Mission Name"
-                required
-              />
-            </div>
+    <div class="planetForm" id="planet-form">
+      <h1>New Mission Name</h1>
+        <div class="rowTwo">
+          <div class="input-box">
+            <input type="text" id="planet" name="planet" />
+            <label for="planet">Planet</label>
+            <select id="planet" name="planet">
+              <option value="">Select a Planet</option>
+              <option value="mercury">Mercury</option>
+              <option value="venus">Venus</option>
+              <option value="earth">Earth</option>
+              <option value="mars">Mars</option>
+              <option value="jupiter">Jupiter</option>
+              <option value="saturn">Saturn</option>
+              <option value="uranus">Uranus</option>
+            </select>
           </div>
-          <div class="row">
-            <div class="input-box">
-              <label for="planet">Planet</label>
-              <select id="planet" name="planet" required>
-                <option value="">Select a Planet</option>
-                <option value="mercury">Mercury</option>
-                <option value="venus">Venus</option>
-                <option value="earth">Earth</option>
-                <option value="mars">Mars</option>
-                <option value="jupiter">Jupiter</option>
-                <option value="saturn">Saturn</option>
-                <option value="uranus">Uranus</option>
-              </select>
-            </div>
-          </div>
-          <div class="submit-button">
-            <button class="clear-form" type="button">
-              clear
-            </button>
-            <input type="submit" value="submit" />
-          </div>
-        </form>
-      </div>
+        </div>
+        <div class="rowThree">
+          <label for="user">Traveler's Name</label>
+          <input type="text" id="user" name="user" />
+        </div>
+        <div class="rowFour">
+          <input type="submit" value="submit" />
+        </div>
+      </form>
     </div>
   </main>
 `;
