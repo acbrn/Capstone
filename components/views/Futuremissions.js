@@ -1,43 +1,44 @@
 import html from "html-literal";
 
 export default () => html`
+  <div class="futureMissions">
     <h2 class="collapsible">Planets</h2>
-  <div class="row">
-    <div class="column">
-      <div class="planet-list">
-        <div id="Mercury" class="planet">
-          <h3>Mercury</h3>
-          <div id="plannedMissionsMercury" class="mission-list">
-            <h4>Planned Missions</h4>
-            <!-- Insert planned missions for Mercury here -->
+    <div class="row">
+      <div class="column">
+        <div class="planet-list">
+          <div id="Mercury" class="planet">
+            <h3>Mercury</h3>
+            <div id="plannedMissionsMercury" class="mission-list">
+              <h4>Planned Missions</h4>
+              <!-- Insert planned missions for Mercury here -->
+            </div>
+            <div id="currentMissionsMercury" class="mission-list">
+              <h4>Current Missions</h4>
+              <!-- Insert current missions for Mercury here -->
+            </div>
           </div>
-          <div id="currentMissionsMercury" class="mission-list">
-            <h4>Current Missions</h4>
-            <!-- Insert current missions for Mercury here -->
+          <div id="Venus" class="planet">
+            <h3>Venus</h3>
+            <div id="plannedMissionsVenus" class="mission-list">
+              <h4>Planned Missions</h4>
+              <!-- Insert planned missions for here -->
+            </div>
+            <div id="currentMissionsVenus" class="mission-list">
+              <h4>Current Missions</h4>
+              <!-- Insert current missions for here -->
+            </div>
           </div>
-        </div>
-        <div id="Venus" class="planet">
-          <h3>Venus</h3>
-          <div id="plannedMissionsVenus" class="mission-list">
-            <h4>Planned Missions</h4>
-            <!-- Insert planned missions for here -->
+          <div id="Earth" class="planet">
+            <h3>Earth</h3>
+            <div id="plannedMissionsEarth" class="mission-list">
+              <h4>Planned Missions</h4>
+              <!-- Insert planned missions for here -->
+            </div>
+            <div id="currentMissionsEarth" class="mission-list">
+              <h4>Current Missions</h4>
+              <!-- Insert current missions for here -->
+            </div>
           </div>
-          <div id="currentMissionsVenus" class="mission-list">
-            <h4>Current Missions</h4>
-            <!-- Insert current missions for here -->
-          </div>
-        </div>
-        <div id="Earth" class="planet">
-          <h3>Earth</h3>
-          <div id="plannedMissionsEarth" class="mission-list">
-            <h4>Planned Missions</h4>
-            <!-- Insert planned missions for here -->
-          </div>
-          <div id="currentMissionsEarth" class="mission-list">
-            <h4>Current Missions</h4>
-            <!-- Insert current missions for here -->
-          </div>
-        </div>
 
           <div id="Mars" class="planet">
             <h3>Mars</h3>

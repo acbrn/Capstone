@@ -1,31 +1,37 @@
 import mongoose from "mongoose";
 
-const missionSchema = new mongoose.Schema({
-  type: {
+const planetSchema = new mongoose.Schema({
+  planets: {
+    type: [
+      {
+        type: String,
+        enum: [
+          "Mercury",
+          "Venus",
+          "Earth",
+          "Mars",
+          "Jupiter",
+          "Saturn",
+          "Uranus",
+          "Neptune"
+        ]
+      }
+    ],
+    required: true
+  },
+  name: {
     type: String,
-    validate: /^[A-Za-z0-9 ]*$/
+    required: true,
+    validate: {
+      validator: /^[a-zA-Z]*$/,
+      message: "Name should only contain letters."
+    }
+  },
+  missions: {
+    type: [String],
+    default: []
   }
 });
 
-const planetSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    enum: [
-      "Mercury",
-      "Venus",
-      "Earth",
-      "Mars",
-      "Jupiter",
-      "Saturn",
-      "Uranus",
-      "Neptune",
-      "Pluto",
-      "Ceres"
-    ]
-  },
-  missions: [missionSchema]
-});
-
 const Planet = mongoose.model("Planet", planetSchema);
-
 export default Planet;
