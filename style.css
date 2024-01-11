@@ -92,7 +92,17 @@ h4{
   display: block;
   text-align: center;
 }
-
+p{
+  color: var(--color-timberwolf);
+  display: flex;
+  justify-content: center;
+  font-size: xx-large;
+}
+img#oops{
+    border-style: none;
+    height: 50dvh;
+    width: 100dvw;
+}
 /* Navigation */
 nav.nav {
   border-bottom: 5px solid var(--color-accent);
@@ -104,10 +114,11 @@ nav.nav {
   padding: 15px;
 }
 nav.nav ul {
+  font-size: medium;
   list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
+  flex-direction: row;
+  font-weight: 800;
 }
 nav.nav li {
   margin: 0 10px;

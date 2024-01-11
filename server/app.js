@@ -49,6 +49,7 @@ const logging = (request, response, next) => {
 app.use(cors);
 app.use(express.json());
 app.use(logging);
+app.use(planets);
 
 // NOTE: MIDDLEWARE GOES BEFORE THE CREATION OF THE ROUTES :)
 
@@ -94,6 +95,5 @@ app.get("/weather/:city", (request, response) => {
     city
   });
 });
-app.use("/planets", planets);
 
 app.listen(PORT, () => console.log("Listening on port 4040"));
