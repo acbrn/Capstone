@@ -4,6 +4,7 @@ import Navigo from "navigo";
 import { capitalize } from "lodash";
 import axios from "axios";
 
+// Import planet images
 import Mercury from "./assets/img/mercury.png";
 import Venus from "./assets/img/venus.png";
 import Earth from "./assets/img/earth.png";
@@ -72,90 +73,72 @@ const planets = [
   }
 ];
 store.Home.planets = planets;
-import oops from "./assets/img/404img.gif";
 
 const router = new Navigo("/");
 function render(state = store.Home) {
   document.querySelector("#root").innerHTML = `
-    ${Header(state)} ${Nav(store.Links)} ${Main(state)} ${Footer()}
+    ${Header(state)}
+    ${Nav(store.Links)}
+    ${Main(state)}
+    ${Footer()}
   `;
   afterRender(state);
-  router.updatePageLinks();
-
-  function afterRender(state) {
-    if (state.view === "Home") {
-      document.querySelector(".weather").innerHTML = `
-    <h2>Current Weather in ${state.weather.city}</h2>
-    <p>${state.weather.temp}°F</p>
-    <p>Feels like ${state.weather.feelsLike}°F</p>
-    <p>${state.weather.description}</p>
-    `;
-    }
-    if (state.view === "Planet") {
-      document.querySelector(".planet").innerHTML = `
-    <h2>${state.planet.name}</h2>
-    <img src="${state.planet.image}" alt="${state.planet.name}" />
-    <p>Planet: ${state.planet.planet}</p>
-    <p>Missions: ${state.planet.missions}</p>
-    `;
-    }
-    if (state.view === "Planets") {
-      document.querySelector(".planetaryList").innerHTML = `
-    <h2>Planets</h2>
-    <ul>
-      ${state.planets
-        .map(
-          planet => `
-        <li>
-          <a href="/planet/${planet.id}">
-            <img src="${planet.image}" alt="${planet.name}" />
-            <h3>${planet.name}</h3>
-          </a>
-        </li>
-      `
-        )
-        .join("")}
-    </ul>
-    `;
-    }
-    if (state.view === "Viewnotfound") {
-      document.querySelector(".viewnotfound").innerHTML = `
-    <h2>404</h2>
-    <img src="${oops}" alt="404" />
-    <p>Sorry, we couldn't find that page.</p>
-    `;
-    }
-    // Event listener for planet form
-    if (state.view === "Form") {
-      handleFormSubmission();
-    }
-  }
 }
-function handleFormSubmission() {
-  document.querySelector("#planet-form").addEventListener("submit", event => {
-    event.preventDefault();
-    const form = event.target;
-    const planet = form.planet.value;
-    const missions = form.missions.value;
-    const user = form.user.value;
-
-    updateTable(missions, planet, user);
-
-    const data = {
-      planet,
-      missions,
-      user
-    };
-
-    axios
-      .post(`${process.env.PLANET_API_URL}/planets`, data)
-      .then(() => {
-        router.navigate("/planets");
-      })
-      .catch(err => {
-        console.log(err);
-      });
+router.updatePageLinks();
+function afterRender(state) {
+  document.querySelector(".fa-bars").addEventListener("click", () => {
+    document.querySelector("ul").classList.toggle("hidden");
   });
+  if (state.view === "Home") {
+    //Do this Stuff
+    document.getElementById("earth").addEventListener("click", event => {
+      event.preventDefault();
+      router.navigate("/planets");
+    });
+  }
+  if (state.view === "Form") {
+    // Do this stuff
+    document.querySelector("#planet-form").addEventListener("submit", event => {
+      event.preventDefault();
+
+      const inputList = event.target.elements;
+      console.log("Input Element List", inputList);
+      //Create a new mission
+      const newMission = [
+        {
+          planet: inputList.planet.value,
+          missions: []
+        }
+      ];
+      // Loop through the missions
+      for (let input of missions.newMission) {
+        if (input.checked) {
+          newMission.missions.push(input.value);
+        }
+      }
+      // Add the new mission to the store
+      store.Planet.missions.push(newMission);
+      //Create a request body object to send to the API
+      const requestData = {
+        planet: inputList.planet.value,
+        missions: newMission.missions,
+        user: inputList.user.value
+      };
+      //Log the request body to the console
+      console.log("Request Body", requestData);
+
+      // Send the request to the API
+      axios
+        .post(`${process.env.PLANET_API_URL}/planets`, requestData)
+        .then(response => {
+          store.Planet.planet.push(response.data);
+          router.navigate("/planets");
+        })
+        .catch(err => {
+          console.log("Oh No!", err);
+        });
+    });
+  }
 }
 router.hooks({
   before: (done, params) => {
@@ -186,17 +169,16 @@ router.hooks({
           });
         break;
       // Add a case for each view that needs data from an API
-      case "Planet":
+      case "Planets":
         axios
-          .get(`${process.env.PLANET_API_URL}/planets/${params.data.id}`)
-          // Get the planet by ID
+          .get(`${process.env.PLANET_API_URL}/planets`)
           .then(response => {
-            // Store the planet in the store
-            store.Planet.planet = response.data;
+            console.log("Response", response.data);
+            store.Planets.planets = response.data;
             done();
           })
-          .catch(error => {
-            console.log("It puked", error);
+          .catch(err => {
+            console.log("Oh No!", err);
             done();
           });
         break;
@@ -209,7 +191,6 @@ router.hooks({
       params && params.data && params.data.view
         ? capitalize(params.data.view)
         : "Home";
-
     render(store[view]);
   }
 });
@@ -217,7 +198,7 @@ router
   .on({
     "/": () => render(),
     ":view": params => {
-      let view = capitalize(params.data.view);
+      const view = capitalize(params.data.view);
       if (view in store) {
         render(store[view]);
       } else {

@@ -1,8 +1,9 @@
 import html from "html-literal";
+
 export default links => html`
   <nav class="nav">
-    <i class="Nav"></i>
-    <ul class="Nav">
+    <i class="fas fa-bars"></i>
+    <ul class="hidden nav-links">
       ${links
         .map(
           link =>

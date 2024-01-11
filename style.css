@@ -39,31 +39,6 @@ h2.collapsible {
   list-style-type: none;
 }
 
-nav.nav{
-  color: #cdd0c8;
-  text-align: center;
-  font-size: 1.5dvw;
-  text-decoration: none;
-  list-style-type: none;
-}
-nav.nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-}
-nav.nav li {
-  margin: 0 10px;
-}
-nav.nav a {
-  color: #cdd0c8;
-  font-family: "Exo 2", sans-serif;
-  font-size: 1.5dvh;
-  text-decoration: none;
-}
-nav.nav a:hover {
-  color: var(--color-accent);
-}
 /* Future Missions Info*/
 .mission-list {
   color: #cdd0c8;
@@ -75,11 +50,14 @@ nav.nav a:hover {
 tr {
   border-bottom: 5px solid var(--color-accent);
   background-color: #0000;
-  align-items: center;
-  padding: 15px;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  width: 100dvw;
+  height: 100dvh;
+  padding: 13px;
   display: flex;
-  width: 25dvw;
-  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 th {
   color: var(--color-accent);
@@ -116,39 +94,40 @@ h4{
 }
 
 /* Navigation */
-.menu_wrapper {
-  padding: 1dvh;
-  border-bottom: 7px solid var(--color-accent);
-  background-color: transparent;
-  flex-direction: column;
-  align-items: center;
-  display: flex;
+nav.nav {
+  border-bottom: 5px solid var(--color-accent);
+  color: #cdd0c8;
+  font-size: 4.5dvw;
+  text-decoration: none;
+  list-style-type: none;
+  text-align: left;
+  padding: 15px;
 }
-.menu_toggle {
-  display: flex;
-  cursor: pointer;
-  color: #fff;
-  font-size: 2dvw;
-}
-.menu {
-  display: block;
-}
-.menu ul {
+nav.nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
 }
-.menu li {
+nav.nav li {
   margin: 0 10px;
 }
-.menu a {
+nav.nav a {
   color: #cdd0c8;
   font-family: "Exo 2", sans-serif;
   font-size: 1.5dvh;
   text-decoration: none;
 }
-
+nav.nav a:hover {
+  color: var(--color-accent);
+}
+nav > ul.hidden {
+  display: none;
+}
+.menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
 /* Hover over link */
 .menu a:hover {
   color: red;
@@ -219,23 +198,15 @@ div.content-form{
   margin: auto;
 }
 /* Contact Page*/
-input[type=text], select{
-  width: 50%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: block;
+input[type="text"], select, input[type="email"], select {
+  box-sizing: border-box;
   border: 1px solid #f9cc0b;
   border-radius: 4px;
-  box-sizing: border-box;
-}
-input[type=email], select{
-  width: 50%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: block;
-  border: 1px solid #f9cc0b;
-  border-radius: 4px;
-  box-sizing: border-box;
+  width: 75dvw;
+  margin: 20px 0;
+  padding: 15px 20px;
+  text-align: center;
+  font-size: x-large;
 }
 input[type=message], select{
   width: 150%;
@@ -274,29 +245,36 @@ input[type=submit]:hover {
   list-style-type: none;
 }
 /* Form */
-#planet-form {
+.planetform, #planet-form {
   color: #cdd0c8;
   text-align: center;
   font-size: 1.5dvw;
   text-decoration: none;
   list-style-type: none;
 }
-.rowTwo {
-  margin: 5px;
-  padding: 5px;
-  width: 100%;
+.rowTwo, .rowThree, .rowFour {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  width: 100dvw;
 }
-.rowThree {
-  margin: 5px;
-  padding: 5px;
-  width: 100%;
+button, select {
+  width: fit-content;
+  text-align: center;
+  font-size: xx-large;
+  text-transform: uppercase;
+  display: inline;
 }
-.rowFour {
-  margin: 5px;
-  padding: 5px;
-  width: 100%;
+label {
+  color: #cdd0c8;
+  text-align: center;
+  font-size: xxx-large;
+  text-decoration: none;
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
 }
-
 
 /* Results */
 #result {
@@ -440,16 +418,17 @@ footer {
 }
 
 #acbrn {
-  width: 30vw; /* Adjusted unit from 30dvw to 30vw */
-  height: 20vh; /* Adjusted unit from 20dvh to 20vh */
+  width: 30vw;
+  height: 10vh;
 }
 
 #bottomLine {
   color: var(--color-accent);
   text-align: center;
-  font-size: 1.5vw; /* Adjusted unit from 1.5dvw to 1.5vw */
+  font-size: 1.5vw;
   text-decoration: none;
   list-style-type: none;
+  position: relative;
 }
 /* Responsive */
 .container {
