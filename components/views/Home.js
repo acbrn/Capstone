@@ -6,7 +6,7 @@ export default state => html`
     <div class="item">
       Welcome home traveler!
       <br />
-      <img class="homeImg" src="${Earth}" />
+      <img class="homeImg" id="earth" src="${Earth}" />
       <br />
       Embark on a cosmic journey with our dedication to unveiling the mysteries
       of upcoming planetary missions. Here, we bring you a comprehensive list of
