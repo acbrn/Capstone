@@ -1,8 +1,10 @@
 export default {
   header: "Mission Name Ideas",
   view: "Submit",
-  Home: {},
-  Planets: { planets: [] },
-  Mission: { mission: [] }
+  planet: {
+    planet: "Planet",
+    missions: "Missions",
+    user: "Traveler",
+    newMission: "Type of Missions"
+  }
 };
-// End of export default;

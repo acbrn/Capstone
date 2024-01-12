@@ -1,22 +1,16 @@
 import html from "html-literal";
 
 export default state => html`
-
-  <div id="planet">
+  <table id="Planets">
     <tr>
-      <th>Mission Name</th>
       <th>Planet</th>
-      <th>Traveler's Name</th>
+      <p>The planet selected is ${state.planet}</p>
+      <th>Missions</th>
+      <p>The mission selected is ${state.missions}</p>
+      <th>Traveler</th>
+      <p>The traveler's name is ${state.user}</p>
+      <th>Type of Missions</th>
+      <p>The type of mission selected is ${state.newMission}</p>
     </tr>
-    ${state.Planets.planets &&
-      state.Planets.planets.map(
-        mission => html`
-          <tr>
-            <td>${mission.missions[0].planet}</td>
-            <td>${mission.planet}</td>
-            <td>${mission.user}</td>
-          </tr>
-        `
-      )}
   </table>
 `;
