@@ -1,16 +1,24 @@
 import html from "html-literal";
 
 export default state => html`
-  <table id="Planets">
-    <tr>
-      <th>Planet</th>
-      <p>The planet selected is ${state.planet}</p>
-      <th>Missions</th>
-      <p>The mission selected is ${state.missions}</p>
-      <th>Traveler</th>
-      <p>The traveler's name is ${state.user}</p>
-      <th>Type of Missions</th>
-      <p>The type of mission selected is ${state.newMission}</p>
-    </tr>
-  </table>
+  <div class="container">
+    <p>You've successfully submitted your mission!</p>
+    <p>Here's what you submitted:</p>
+    <ul>
+      ${state.missions.map(
+        mission =>
+          html`
+            <li>
+              <p>
+                The planet you selected: ${mission.planet}. The name of mission
+                you submitted: ${mission.missions}, and this mission will be a:
+                ${mission.newMission} type mission, thank you ${mission.user}
+                for your submission
+              </p>
+              <p>You can submit another mission <a href="/form">here</a></p>
+            </li>
+          `
+      )}
+    </ul>
+  </div>
 `;

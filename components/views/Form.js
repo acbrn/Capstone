@@ -6,13 +6,14 @@ export default () => html`
       <label for="planets">Select a Planet</label>
       <select id="planets" name="planets">
         <option value="">Select a Planet</option>
-        <option value="mercury">Mercury</option>
-        <option value="venus">Venus</option>
-        <option value="earth">Earth</option>
-        <option value="mars">Mars</option>
-        <option value="jupiter">Jupiter</option>
-        <option value="saturn">Saturn</option>
-        <option value="uranus">Uranus</option> </select
+        <option value="Mercury">Mercury</option>
+        <option value="Venus">Venus</option>
+        <option value="Earth">Earth</option>
+        <option value="Mars">Mars</option>
+        <option value="Jupiter">Jupiter</option>
+        <option value="Saturn">Saturn</option>
+        <option value="Uranus">Uranus</option>
+        <option value="Neptune">Neptune</option></select
       ><br />
 
       <div class="rowTwo">
@@ -21,13 +22,13 @@ export default () => html`
         <input type="text" id="missions" name="missions" />
       </div>
 
-      <label for="Type of Missions">Type of Missions</label>
+      <label for="typeofMission">Type of Missions</label>
       <div class="rowThree">
-        <input type="radio" name="newMission" value="mission1" />Rover<br />
-        <input type="radio" name="newMission" value="mission2" />
+        <input type="radio" name="newMission" value="Rover" />Rover<br />
+        <input type="radio" name="newMission" value="Satellite" />
         Satellite<br />
-        <input type="radio" name="newMission" value="mission3" /> Human<br />
-        <input type="radio" name="newMission" value="mission4" /> Drone<br />
+        <input type="radio" name="newMission" value="Human" /> Human<br />
+        <input type="radio" name="newMission" value="Drone" /> Drone<br />
       </div>
 
       <div class="rowFour">

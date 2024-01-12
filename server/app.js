@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import planets from "./routers/planets.js";
+import planets from "./routers/planet.js";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -38,17 +38,8 @@ const cors = (req, res, next) => {
   next();
 };
 
-// Logging Middleware
-const logging = (request, response, next) => {
-  console.log(
-    `${request.method} ${request.url} ${new Date().toLocaleString("en-us")}`
-  );
-  next();
-};
-
 app.use(cors);
 app.use(express.json());
-app.use(logging);
 app.use(planets);
 
 // NOTE: MIDDLEWARE GOES BEFORE THE CREATION OF THE ROUTES :)
