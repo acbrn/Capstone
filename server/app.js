@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import planets from "./routers/planets.js";
+import planets from "./routers/planet.js";
 
 // Load environment variables from .env file
 dotenv.config();
