@@ -1,77 +1,83 @@
-import { Router, response } from "express";
+import { Router } from "express";
 import Planet from "../models/Planet.js";
 
 const router = Router();
 
-router.post("/", async (req, res) => {
+//Create new route handles for GET, POST, PUT, and DELETE
+//Create a POST route for /planet that creates a new planet
+router.post("/", async (request, response) => {
   try {
-    console.log(req.body);
-    const planet = new Planet(req.body);
+    const newMission = new Planet(request.body);
 
-    const data = await planet.save();
+    const data = await newMission.save();
 
     response.json(data);
   } catch (error) {
     console.log(error);
-    if ("name" in error && error.name === "ValidationError")
-      return response.status(400).json({ message: error.message });
+    if ("planet" in error && error.planet === "ValidationError")
+      return response.status(400).json(error.errors);
 
-    return response.status(500).json({ message: error.message });
+    return response.status(500).json({ error: "Something went wrong" });
   }
 });
 
-router.get("/", async (req, res) => {
+//Create a GET route for /planet that returns all planets
+router.get("/", async (request, response) => {
   try {
-    const planets = await Planet.find(query);
-    res.json(planets);
+    const query = request.query;
+    const data = await Planet.find(query);
+    response.json(data);
   } catch (error) {
-    return;
-    res.status(500).json({ message: error.message });
+    console.log(error);
+    response.status(500).json({ error: "Something went wrong" });
   }
 });
 
-router.get("/:id", async (req, res) => {
+//Create a GET route for /planet/:id that returns a planet by id
+router.get("/:id", async (request, response) => {
   try {
-    const planet = await Planet.findById(req.params.id);
+    const planet = await Planet.findById(request.params.id);
 
-    res.json(planet);
+    response.json(planet);
   } catch (error) {
-    return res.status(500).json({ message: error.message });
+    console.log(error);
+    response.status(500).json({ error: "Something went wrong" });
   }
 });
 
-router.delete("/:id", async (req, res) => {
+//Create a PUT route for /planet that updates a planet
+router.put("/:id", async (request, response) => {
   try {
-    const data = await Planet.findByIdAndDelete(req.params.id, {});
-    res.json(data);
-  } catch (error) {
-    return;
-    res.status(500).json({ message: error.message });
-  }
-});
-
-router.put("/:id", async (req, res) => {
-  try {
-    const body = req.body;
-
+    const body = request.body;
     const data = await Planet.findByIdAndUpdate(
       request.params.id,
       {
         $set: {
-          planet: body.planet,
-          user: body.user,
           missions: body.missions,
-          typeofMission: body.typeofMission
+          user: body.user,
+          typeofMission: body.typeofMission,
+          planet: body.planet
         }
       },
       { new: true }
     );
-    res.json(data);
+    response.json(data);
   } catch (error) {
     console.log(error);
-    if ("name" in error && error.name === "ValidationError")
-      return response.status(400).json({ message: error.message });
-    return res.status(400).json({ message: error.message });
+    if ("planet" in error && error.planet === "ValidationError")
+      return response.status(400).json(error.errors);
+    return response.status(500).json({ error: "Something went wrong" });
+  }
+});
+
+//Create a DELETE route for /planet that deletes a planet
+router.delete("/:id", async (request, response) => {
+  try {
+    const data = await Planet.findByIdAndRemove(request.params.id, {});
+    response.json(data);
+  } catch (error) {
+    console.log(error);
+    return response.status(500).json({ error: "Something went wrong" });
   }
 });
 
