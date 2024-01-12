@@ -33,65 +33,32 @@ function afterRender(state) {
   });
 
   if (state.view === "Home") {
-    // Do this stuff when on Home view
+    //Do this stuff when on Home view
     document.getElementById("earth").addEventListener("click", event => {
       event.preventDefault();
       router.navigate("/planets");
     });
   }
-
   if (state.view === "Form") {
-    // Do this stuff when on Form view
-    document.querySelector("#planet-form").addEventListener("submit", event => {
+    document.querySelector("form").addEventListener("submit", event => {
       event.preventDefault();
 
-      const inputList = event.target.elements;
+      console.log(event.target.elements);
+      console.log(event.target.elements.planets.value);
+      console.log(event.target.elements.missions.value);
+      console.log(event.target.elements.user.value);
+      console.log(event.target.elements.newMission.value);
 
-      // Accessing form elements using their names
-      const planetValue = inputList.planet.value;
-      const userValue = inputList.user.value;
-      const missionsValue = inputList.missions.value;
-      const newMissionValue = inputList.newMission.value;
+      store.Submit.missions = store.Submit.missions || [];
 
-      if (inputList && inputList.newMission) {
-        // Create a new mission
-        const newMission = {
-          planet: planetValue,
-          missions: missionsValue,
-          type: newMissionValue,
-          user: userValue
-        };
+      store.Submit.missions.push({
+        planet: event.target.elements.planets.value,
+        missions: event.target.elements.missions.value,
+        user: event.target.elements.user.value,
+        newMission: event.target.elements.newMission.value
+      });
 
-        // Log the new mission to the console
-        console.log("New Mission", newMission);
-
-        // Add the new mission to the store
-        store.Submit.missions.push(newMission);
-
-        // Create a request body object to send to the API
-        const requestData = {
-          planet: planetValue,
-          missions: missionsValue,
-          user: userValue,
-          type: newMissionValue
-        };
-
-        // Log the request body to the console
-        console.log("Request Body", requestData);
-
-        // Send the request to the API
-        axios
-          .post(`${process.env.PLANET_API_URL}/planets`, requestData)
-          .then(response => {
-            store.Planets.planets.push(response.data);
-            router.navigate("/planets");
-          })
-          .catch(err => {
-            console.log("Oh No!", err);
-          });
-      } else {
-        console.error("Invalid or missing structure for inputList.newMission");
-      }
+      router.navigate("/submit");
     });
   }
 }
@@ -129,16 +96,15 @@ router.hooks({
         axios
           .get(`${process.env.PLANET_API_URL}/planets`)
           .then(response => {
-            console.log("Response", response.data);
+            console.log(response.data);
             store.Planets.planets = response.data;
             done();
           })
           .catch(err => {
-            console.log("Oh No!", err);
+            console.log(err);
             done();
           });
         break;
-
       default:
         done();
     }
