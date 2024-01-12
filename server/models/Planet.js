@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 const planetSchema = new mongoose.Schema({
   planet: {
     type: String,
-    required: true,
     enum: [
       "Mercury",
       "Venus",
@@ -13,23 +12,20 @@ const planetSchema = new mongoose.Schema({
       "Saturn",
       "Uranus",
       "Neptune"
-    ]
+    ],
+    validate: /^[A-Za-z]*$/
   },
   user: {
     type: String,
-    required: true,
     validate: /^[A-Za-z]*$/
   },
   missions: {
-    type: Number,
-    required: true,
-    min: 0,
-    max: 4
+    type: String,
+    validate: /^[A-Za-z]*$/
   },
   typeofMission: {
     type: String,
-    required: true,
-    enum: ["Orbiter", "Satellite", "Human", "Drone"]
+    enum: ["Orbiter", "Satellite", "Rover", "Human", "Drone"]
   }
 });
 

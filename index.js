@@ -23,9 +23,9 @@ function render(state = store.Home) {
     ${Footer()}
   `;
 
+  router.updatePageLinks();
   afterRender(state);
 }
-router.updatePageLinks();
 
 function afterRender(state) {
   document.querySelector(".fa-bars").addEventListener("click", () => {
