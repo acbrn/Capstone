@@ -6,13 +6,14 @@ export default () => html`
       <label for="planets">Select a Planet</label>
       <select id="planets" name="planets">
         <option value="">Select a Planet</option>
-        <option value="mercury">Mercury</option>
-        <option value="venus">Venus</option>
-        <option value="earth">Earth</option>
-        <option value="mars">Mars</option>
-        <option value="jupiter">Jupiter</option>
-        <option value="saturn">Saturn</option>
-        <option value="uranus">Uranus</option> </select
+        <option value="Mercury">Mercury</option>
+        <option value="Venus">Venus</option>
+        <option value="Earth">Earth</option>
+        <option value="Mars">Mars</option>
+        <option value="Jupiter">Jupiter</option>
+        <option value="Saturn">Saturn</option>
+        <option value="Uranus">Uranus</option>
+        <option value="Neptune">Neptune</option></select
       ><br />
 
       <div class="rowTwo">

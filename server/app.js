@@ -38,17 +38,8 @@ const cors = (req, res, next) => {
   next();
 };
 
-// Logging Middleware
-const logging = (request, response, next) => {
-  console.log(
-    `${request.method} ${request.url} ${new Date().toLocaleString("en-us")}`
-  );
-  next();
-};
-
 app.use(cors);
 app.use(express.json());
-app.use(logging);
 app.use(planets);
 
 // NOTE: MIDDLEWARE GOES BEFORE THE CREATION OF THE ROUTES :)
