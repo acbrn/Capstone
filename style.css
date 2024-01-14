@@ -8,6 +8,9 @@
 }
 html {
   scroll-behavior: smooth;
+  height: 97dvh;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
 }
 
 /* Headline */
@@ -31,79 +34,13 @@ html {
   color: var(--color-accent);
   padding: 4px;
 }
-h2.collapsible {
-  color: var(--color-accent);
-  text-align: center;
-  font-size: 2dvw;
-  text-decoration: none;
-  list-style-type: none;
-}
 
-/* Future Missions Info*/
-.mission-list {
-  color: #cdd0c8;
-  text-align: center;
-  font-size: 1.5dvw;
-  text-decoration: none;
-  list-style-type: none;
-}
-tr {
-  border-bottom: 5px solid var(--color-accent);
-  background-color: #0000;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  width: 100dvw;
-  height: 100dvh;
-  padding: 13px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-th {
-  color: var(--color-accent);
-  text-align: center;
-  font-size: 2dvw;
-  text-decoration: none;
-  list-style-type: none;
-}
-
-h3 {
-  color: var(--color-timberwolf);
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-.planet h3 {
-  text-align: center;
-  transition: all .3s;
-  display: block;
-}
-.planet h3:hover {
-  color: #cdd0c8;
-  transform: scale(1.2);
-  padding: .1dvw;
-}
-h4{
-  color: var(--color-accent);
-  display: flex;
-  justify-content: center;
-}
-.planet:hover h4 {
-  display: block;
-  text-align: center;
-}
-p{
-  color: var(--color-timberwolf);
-  display: flex;
-  justify-content: center;
-  font-size: xx-large;
-}
-img#oops{
-    border-style: none;
-    height: 50dvh;
-    width: 100dvw;
-}
 /* Navigation */
+.fa, .fas {
+  display: flex;
+  font-weight: 900;
+  justify-content: center;
+}
 nav.nav {
   border-bottom: 5px solid var(--color-accent);
   color: #cdd0c8;
@@ -114,11 +51,11 @@ nav.nav {
   padding: 15px;
 }
 nav.nav ul {
-  font-size: medium;
+  flex-direction: row;
+  font-size: small;
+  font-weight: 800;
   list-style: none;
   display: flex;
-  flex-direction: row;
-  font-weight: 800;
 }
 nav.nav li {
   margin: 0 10px;
@@ -126,8 +63,9 @@ nav.nav li {
 nav.nav a {
   color: #cdd0c8;
   font-family: "Exo 2", sans-serif;
-  font-size: 1.5dvh;
+  font-size: 2.5dvh;
   text-decoration: none;
+  padding: 5px;
 }
 nav.nav a:hover {
   color: var(--color-accent);
@@ -154,6 +92,7 @@ select {
   margin-bottom: 16px;
   resize: vertical;
 }
+
 /* Body & Background */
 body {
   background: linear-gradient(to top, var(--color-blue), black);
@@ -161,7 +100,17 @@ body {
   font-family: 'Exo 2', sans-serif;
   text-align: left;
 }
-
+p{
+  color: var(--color-timberwolf);
+  display: flex;
+  justify-content: center;
+  font-size: xx-large;
+}
+img#oops{
+    border-style: none;
+    height: 50dvh;
+    width: 100dvw;
+}
 /* Content */
 .content {
   color: #cdd0c8;
@@ -208,15 +157,16 @@ div.content-form{
   padding: 1em;
   margin: auto;
 }
+
 /* Contact Page*/
 input[type="text"], select, input[type="email"], select {
   box-sizing: border-box;
+  text-align: center;
   border: 1px solid #f9cc0b;
   border-radius: 4px;
-  width: 75dvw;
+  width: 20dvw;
   margin: 20px 0;
   padding: 15px 20px;
-  text-align: center;
   font-size: x-large;
 }
 input[type=message], select{
@@ -278,15 +228,15 @@ button, select {
   display: inline;
 }
 label {
-  color: #cdd0c8;
+  margin: 10px;
+  color: var(--color-accent);
   text-align: center;
+  justify-content: center;
   font-size: xxx-large;
   text-decoration: none;
   list-style-type: none;
   display: flex;
-  justify-content: center;
 }
-
 /* Results */
 #result {
   text-align: center;
@@ -308,23 +258,58 @@ label {
   flex-wrap: wrap;
   justify-content: space-around;
 }
-
-/* Planet image styling */
-.planetImage {
-  height: 3dvh;
-  width: 3dvw;
-  display: block;
-}
-
-ul {
-  flex-direction: column;
+#result > div > div {
+  flex-flow: column wrap;
+  width: 100%;
+  margin-bottom: 1px;
+  padding: 10px;
   display: flex;
   align-items: center;
+  flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* Future Missions Info*/
+.mission-list {
+  color: #cdd0c8;
+  text-align: center;
+  font-size: 1.5dvw;
+  text-decoration: none;
+  list-style-type: none;
+}
+tr {
+  border-bottom: 5px solid var(--color-accent);
+  background-color: #0000;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  width: 100dvw;
+  height: 100dvh;
+  padding: 13px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+th {
+  color: var(--color-accent);
+  text-align: center;
+  font-size: 2dvw;
+  text-decoration: none;
+  list-style-type: none;
+}
+#submission {
+  color: #cdd0c8;
+  text-align: center;
+  padding: 0.8em;
+  font-size: larger;
+  text-decoration: none;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   justify-content: center;
 }
 /* Future Missions Boxing */
-
 li{
   display: flex;
   padding: 0.8em;
@@ -334,13 +319,11 @@ li{
   text-decoration: none;
   list-style-type: none;
 }
-
 .row {
   margin: 5px;
   padding: 5px;
   width: 100%;
 }
-
 .column {
   flex: 1;
 }
@@ -351,11 +334,9 @@ li{
   transition: max-height 1.5s ease-out;
 }
 /* Show missions when the planet is hovered */
-.planet:hover .mission-list,
-.planet:hover {
-  max-height: 500px;
-  transition: max-height 1.5s ease-in;
-  background-color: transparent
+.planet:hover .mission-list{
+  max-height: 100%;
+  transition: max-height 2.5s ease-in;
 }
 .planet .mission-list.active {
   background-color: transparent;
@@ -363,13 +344,65 @@ li{
 .hidden--mobile {
   display: none;
 }
-
+/* Planet image styling */
+.planetImage {
+  height: 3dvh;
+  width: 3dvw;
+  display: block;
+}
+ul {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+h2.collapsible {
+  color: var(--color-accent);
+  text-align: center;
+  font-size: 2dvw;
+  text-decoration: none;
+  list-style-type: none;
+}
+h3 {
+  color: var(--color-timberwolf);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.planet h3 {
+  text-align: center;
+  transition: all .3s;
+  display: block;
+}
+.planet h3:hover {
+  color: #cdd0c8;
+  transform: scale(1.2);
+  padding: .1dvw;
+}
+h4{
+  color: var(--color-accent);
+  display: flex;
+  justify-content: center;
+}
+h6{
+  color: var(--color-accent);
+  display: none;
+  justify-content: center;
+}
+.planet:hover h6 {
+  display: block;
+  text-align: center;
+}
 /* Planet Page */
 .planet-list {
   height: 15dvh;
   flex-flow: wrap;
   justify-content: space-evenly;
   display: flex;
+}
+.mission-list{
+
 }
 #Mercury, #Venus, #Earth, #Mars, #Jupiter, #Saturn, #Uranus, #Neptune{
   color: #0c1e36;
@@ -387,33 +420,41 @@ li{
     background-size: cover;
   }
   #Venus{
+    background-image: url('./assets/img/venus.png');
     background-position: center;
-    background-image: url('./assets/img/venus.png')
+    background-size: cover;
   }
   #Earth {
     background-image: url('./assets/img/earth.png');
     background-position: center;
+    background-size: cover;
   }
   #Mars{
     background-image: url('./assets/img/mars.png');
     background-position: center;
+    background-size: cover;
   }
   #Jupiter{
     background-image: url('./assets/img/jupiter.png');
     background-position: center;
+    background-size: cover;
   }
   #Saturn{
     background-image: url('./assets/img/saturn.png');
     background-position: center;
+    background-size: cover;
   }
   #Uranus{
     background-image: url('./assets/img/uranus.png');
     background-position: center;
+    background-size: cover;
   }
   #Neptune{
     background-image: url('./assets/img/neptune.png');
     background-position: center;
+    background-size: cover;
   }
+
 /* Footer */
 footer {
   position: fixed;
@@ -427,19 +468,17 @@ footer {
   font-family: "Exo 2", sans-serif;
   font-weight: bold;
 }
-
 #acbrn {
   width: 30vw;
-  height: 10vh;
+  height: 15vh;
 }
-
 #bottomLine {
   color: var(--color-accent);
   text-align: center;
   font-size: 1.5vw;
   text-decoration: none;
   list-style-type: none;
-  position: relative;
+  position: fixed;
 }
 /* Responsive */
 .container {
@@ -452,6 +491,31 @@ footer {
   .container {
     max-width: 540px;
   }
+  .rowTwo, .rowThree, .rowFour {
+    flex-flow: column wrap;
+    align-content: center;
+    width: 94dvw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}input[type="text"], select, input[type="email"], select {
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid #f9cc0b;
+    border-radius: 4px;
+    width: 85dvw;
+    margin: 20px 0;
+    padding: 15px 20px;
+    font-size: x-large;
+}button, input, optgroup, select, textarea {
+    font-family: inherit;
+    line-height: 1.15;
+    margin: 0;
+}
+textarea {
+    overflow: auto;
+    width: 90dvw;
+}
 }
 
 @media (min-width: 768px) {

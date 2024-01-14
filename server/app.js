@@ -36,25 +36,13 @@ const cors = (req, res, next) => {
   res.setHeader("Access-Control-Allow-Credentials", true);
   next();
 };
-// Logging Middleware
-const logging = request => {
-  console.log(
-    `${request.method} ${request.url} ${new Date().toLocaleString("en-US")}`
-  );
-};
 
 app.use(cors);
-app.use("/Planet", planet);
 app.use(express.json());
-app.use(logging);
 
 // NOTE: MIDDLEWARE GOES BEFORE THE CREATION OF THE ROUTES :)
 
 // Request handlers go here
-app.get("/status", (request, response) => {
-  response.status(200).json({ message: "Service healthy" });
-});
-
 app.get("/weather/:city", (request, response) => {
   // Express adds a "params" Object to requests that has an matches parameter created using the colon syntax
   const city = request.params.city;
@@ -92,4 +80,10 @@ app.get("/weather/:city", (request, response) => {
     city
   });
 });
+
+app.get("/status", (request, response) => {
+  response.status(200).json({ message: "Service healthy" });
+});
+app.use("/Planet", planet);
+
 app.listen(PORT, () => console.log("Listening on port 4040"));
