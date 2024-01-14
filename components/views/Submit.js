@@ -8,7 +8,7 @@ export default state => html`
       ${state.missions.map(
         mission =>
           html`
-            <li>
+            <li id="submission">
               <p>
                 The planet you selected: ${mission.planet}. The name of mission
                 you submitted: ${mission.missions}, and this mission will be a:

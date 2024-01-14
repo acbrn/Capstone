@@ -6,6 +6,11 @@ export default state => html`
     <div class="item">
       Welcome home traveler!
       <br />
+      <h6>
+        The weather in ${state.weather.city} is ${state.weather.description}.
+        Temperature is ${state.weather.temp}F, and it feels like
+        ${state.weather.feelsLike}F.
+      </h6>
       <img class="homeImg" id="earth" src="${Earth}" />
       <br />
       Embark on a cosmic journey with our dedication to unveiling the mysteries
@@ -27,11 +32,6 @@ export default state => html`
       infinite. Come along and be part of the cosmic adventure that awaits us.
       The next frontier is just a click away!
       <br />
-      <h6>
-        The weather in ${state.weather.city} is ${state.weather.description}.
-        Temperature is ${state.weather.temp}F, and it feels like
-        ${state.weather.feelsLike}F.
-      </h6>
     </div>
   </div>
 `;
