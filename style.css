@@ -8,7 +8,7 @@
 }
 html {
   scroll-behavior: smooth;
-  height: 97dvh;
+  height: 150%;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
 }
@@ -33,6 +33,13 @@ html {
 #headline span {
   color: var(--color-accent);
   padding: 4px;
+}
+#satellite {
+  position: relative;
+  height: 3em;
+  width: 3em;
+  left: 90dvw;
+  bottom: 12dvh;
 }
 
 /* Navigation */
@@ -99,6 +106,7 @@ body {
   margin: 0;
   font-family: 'Exo 2', sans-serif;
   text-align: left;
+  height: 100dvh;
 }
 p{
   color: var(--color-timberwolf);
@@ -213,12 +221,44 @@ input[type=submit]:hover {
   text-decoration: none;
   list-style-type: none;
 }
-.rowTwo, .rowThree, .rowFour {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+.rowOne{
+  flex-flow: column wrap;
   align-content: center;
-  width: 100dvw;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.rowTwo{
+  flex-flow: wrap;
+  place-content: center space-evenly;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.rowThree{
+  flex-flow: column wrap;
+  align-content: center;
+  width: 94dvw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.rowFour{
+  flex-flow: column wrap;
+  align-content: center;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.rowFive{
+  flex-flow: column wrap;
+  align-content: center;
+  width: 94dvw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 button, select {
   width: fit-content;
@@ -227,6 +267,7 @@ button, select {
   text-transform: uppercase;
   display: inline;
 }
+
 label {
   margin: 10px;
   color: var(--color-accent);
@@ -298,6 +339,18 @@ th {
   list-style-type: none;
 }
 #submission {
+  color: #cdd0c8;
+  text-align: center;
+  padding: 0.8em;
+  font-size: larger;
+  text-decoration: none;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+#checkboxes{
   color: #cdd0c8;
   text-align: center;
   padding: 0.8em;
@@ -457,14 +510,12 @@ h6{
 
 /* Footer */
 footer {
-  position: fixed;
-  bottom: 0;
+  position: relative;
   color: var(--color-timberwolf);
   text-align: -webkit-center;
   background-color: #0a0a0a;
   border-top: 3px solid #f9cc0b;
   width: 100%;
-  padding: 5px 20px;
   font-family: "Exo 2", sans-serif;
   font-weight: bold;
 }
@@ -478,7 +529,6 @@ footer {
   font-size: 1.5vw;
   text-decoration: none;
   list-style-type: none;
-  position: fixed;
 }
 /* Responsive */
 .container {
@@ -491,13 +541,9 @@ footer {
   .container {
     max-width: 540px;
   }
-  .rowTwo, .rowThree, .rowFour {
-    flex-flow: column wrap;
-    align-content: center;
-    width: 94dvw;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+  .hidden--mobile {
+    display: block;
+  }
 }input[type="text"], select, input[type="email"], select {
     box-sizing: border-box;
     text-align: center;
@@ -515,7 +561,6 @@ footer {
 textarea {
     overflow: auto;
     width: 90dvw;
-}
 }
 
 @media (min-width: 768px) {

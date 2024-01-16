@@ -1,8 +1,14 @@
 import html from "html-literal";
 
-export default () => html`
+export default state => html`
   <div class="aboutPage">
     <h3>About Interstellar</h3>
+    <br />
+    <h4>
+      The ISS is currently flying over ${state.isslocation.latitude} latitude by
+      ${state.isslocation.longitude} longitude. It is traveling at an average
+      speed of 17,150 miles per hour.
+    </h4>
 
     Welcome to a celestial journey that transcends the ordinary and ignites the
     flame of curiosity within! Our mission is clear: to foster a love for

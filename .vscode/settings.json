@@ -26,8 +26,10 @@
     "ACBRN",
     "collapsibles",
     "interstellarlogo",
+    "isslocation",
     "Makemake",
-    "Navigo"
+    "Navigo",
+    "planetform"
   ],
   "liveServer.settings.port": 5501,
   "editor.largeFileOptimizations": false

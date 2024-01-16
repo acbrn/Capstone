@@ -7,7 +7,6 @@ import planet from "./routers/planet.js";
 dotenv.config();
 
 const app = express();
-
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB, {
   // Configuration options to remove deprecation warnings, just include them to remove clutter
@@ -20,7 +19,6 @@ db.once(
   "open",
   console.log.bind(console, "Successfully opened connection to Mongo!")
 );
-
 const PORT = process.env.PORT || 4040;
 // CORS Middleware
 const cors = (req, res, next) => {
@@ -36,7 +34,6 @@ const cors = (req, res, next) => {
   res.setHeader("Access-Control-Allow-Credentials", true);
   next();
 };
-
 app.use(cors);
 app.use(express.json());
 
