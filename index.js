@@ -1,7 +1,7 @@
 import { Header, Nav, Main, Footer } from "./components";
 import * as store from "./store";
 import Navigo from "navigo";
-import { capitalize } from "lodash";
+import { capitalize, get } from "lodash";
 import axios from "axios";
 
 // Import planet images
@@ -13,6 +13,24 @@ import Jupiter from "./assets/img/jupiter.png";
 import Saturn from "./assets/img/saturn.png";
 import Uranus from "./assets/img/uranus.png";
 import Neptune from "./assets/img/neptune.png";
+import satellite from "./assets/img/space-satellite.png";
+
+//Function to display planet images randomly on the home page
+
+function randomPlanet() {
+  const planetImages = [
+    Mercury,
+    Venus,
+    Earth,
+    Mars,
+    Jupiter,
+    Saturn,
+    Uranus,
+    Neptune
+  ];
+  const randomImage = Math.floor(Math.random() * planetImages.length);
+  return planetImages[randomImage];
+}
 
 const router = new Navigo("/");
 function render(state = store.Home) {
@@ -23,10 +41,14 @@ function render(state = store.Home) {
     ${Footer()}
   `;
 
+  // Display random planet image on home page
+  const earthImage = document.querySelector("#earth");
+  if (earthImage) {
+    earthImage.src = randomPlanet();
+  }
   router.updatePageLinks();
   afterRender(state);
 }
-
 function afterRender(state) {
   document.querySelector(".fa-bars").addEventListener("click", () => {
     document.querySelector("ul").classList.toggle("hidden");
@@ -34,7 +56,7 @@ function afterRender(state) {
 
   if (state.view === "Home") {
     //Do this stuff when on Home view
-    document.getElementById("earth").addEventListener("click", event => {
+    document.getElementById("satellite").addEventListener("click", event => {
       event.preventDefault();
       router.navigate("/planets");
     });
@@ -62,6 +84,7 @@ function afterRender(state) {
     });
   }
 }
+
 router.hooks({
   before: (done, params) => {
     const view =
@@ -91,7 +114,23 @@ router.hooks({
             done();
           });
         break;
-
+      case "About":
+        axios
+          .get(`${process.env.ISS_API_URL}`)
+          .then(response => {
+            const latlong = response.data.iss_position;
+            store.About.isslocation = {
+              latitude: latlong.latitude,
+              longitude: latlong.longitude
+            };
+            console.log(response.data);
+            done();
+          })
+          .catch(err => {
+            console.log(err);
+            done();
+          });
+        break;
       case "Planets":
         axios
           .get(`${process.env.PLANET_API_URL}/planets`)

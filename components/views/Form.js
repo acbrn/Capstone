@@ -24,11 +24,18 @@ export default () => html`
 
       <label for="typeofMission">Type of Missions</label>
       <div class="rowThree">
-        <input type="radio" name="newMission" value="Rover" />Rover</input>
+        <input type="radio" name="newMission" value="Rover" />
+        <p>Rover</p>
+      </input>
         <input type="radio" name="newMission" value="Satellite" />
-        Satellite</input>
-        <input type="radio" name="newMission" value="Human" /> Human</input>
-        <input type="radio" name="newMission" value="Drone" /> Drone</input>
+        <p>Satellite</p>
+      </input>
+        <input type="radio" name="newMission" value="Human" />
+        <p> Human</p>
+      </input>
+        <input type="radio" name="newMission" value="Drone" />
+        <p>Drone</p>
+      </input>
       </div>
 
       <div class="rowFour">
