@@ -1,7 +1,7 @@
 import html from "html-literal";
 
 export default () => html`
-  <form id="form">
+  <form id="form" method="POST" action="">
     <div class="planetForm" id="planet-form">
       <label for="planets">Select a Planet</label>
       <select id="planets" name="planets">
