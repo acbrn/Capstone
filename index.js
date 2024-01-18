@@ -62,29 +62,43 @@ function afterRender(state) {
     });
   }
   if (state.view === "Form") {
+    //Add event handler for the submit button on the form
     document.querySelector("form").addEventListener("submit", event => {
       event.preventDefault();
-
-      console.log(event.target.elements);
-      console.log(event.target.elements.planets.value);
-      console.log(event.target.elements.missions.value);
-      console.log(event.target.elements.user.value);
-      console.log(event.target.elements.newMission.value);
-
-      store.Submit.missions = store.Submit.missions || [];
-
-      store.Submit.missions.push({
-        planet: event.target.elements.planets.value,
-        missions: event.target.elements.missions.value,
-        user: event.target.elements.user.value,
-        newMission: event.target.elements.newMission.value
-      });
-
-      router.navigate("/submit");
+      //Get the form element
+      const inputList = event.target.elements;
+      //Create an empty array to hold the type of missions
+      const missionType = [];
+      //Iterate over the mission type checkboxes
+      for (let i = 0; i < inputList.length; i++) {
+        //If the checkbox is checked, add the value to the missionType array
+        if (inputList[i].checked) {
+          missionType.push(inputList[i].value);
+        }
+      }
+      //Create a request body object to send to the API
+      const requestData = {
+        missionName: inputList.missionName.value,
+        planet: inputList.planet.value,
+        missionType: missionType,
+        traveler: inputList.traveler
+      };
+      //Log the request body to the console
+      console.log("Request Body", requestData);
+      axios
+        //Make a POST request to the API to create new mission
+        .post(`${process.env.PLANET_API_URL}/planet`, requestData)
+        .then(response => {
+          //Then push the new mission to the Mission state mission attribute, so it will be displayed on the page
+          store.Mission.mission.push(response.data);
+          //Then navigate to the /mission page
+          router.navigate("/Mission");
+        })
+        //If there is an error, log it to the console
+        .catch(error => console.log("Error", error));
     });
   }
 }
-
 router.hooks({
   before: (done, params) => {
     const view =
@@ -131,12 +145,12 @@ router.hooks({
             done();
           });
         break;
-      case "Planets":
+      case "Mission":
         axios
-          .get(`${process.env.PLANET_API_URL}/planets`)
+          .get(`${process.env.PLANET_API_URL}/planet`)
           .then(response => {
-            console.log(response.data);
-            store.Planets.planets = response.data;
+            console.log("response", response.data);
+            store.Form.mission = response.data;
             done();
           })
           .catch(err => {

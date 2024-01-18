@@ -205,6 +205,23 @@ input[type=submit]:hover {
   color: var(--color-primary);
 }
 
+/* Mission Page */
+tbody {
+  color: #cdd0c8;
+  text-align: center;
+  font-size: 1.5dvw;
+  text-decoration: none;
+  list-style-type: none;
+  border: 2px solid #f9cc0b;
+}
+th {
+  color: var(--color-accent);
+  text-align: center;
+  font-size: 2dvw;
+  text-decoration: none;
+  list-style-type: none;
+}
+
 /* Submission Inform */
 .planetform {
   color: #cdd0c8;

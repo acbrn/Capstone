@@ -1,84 +1,88 @@
-import { Router } from "express";
+import { Router, response } from "express";
 import Planet from "../models/Planet.js";
 
 const router = Router();
 
-//Create new route handles for GET, POST, PUT, and DELETE
-//Create a POST route for /planet that creates a new planet
-router.post("/", async (request, response) => {
+// Create mission route handles "/planets/"
+router.post("/", async (req, res) => {
   try {
-    const newMission = new Planet(request.body);
-
-    const data = await newMission.save();
-
-    response.json(data);
+    console.log("Request body", req.body);
+    const newMission = new Planet(req.body);
+    const mission = await newMission.save();
+    response.json(mission);
   } catch (error) {
     console.log(error);
-    if ("planet" in error && error.planet === "ValidationError")
-      return response.status(400).json(error.errors);
+    if ("traveler" in error && error.traveler === "ValidatorError" {
+      return res.status(400).json({ traveler: error.errors.traveler.message });
 
-    return response.status(500).json({ error: "Something went wrong" });
+      return res.status(500).json(error.errors);
   }
-});
+}
+}
+);
 
-//Create a GET route for /planet that returns all planets
-router.get("/", async (request, response) => {
+//Get all missions routes
+router.get("/", async (req, res) => {
   try {
-    const query = request.query;
+    const query = req.query;  // Defaults to an empty object
+
     const data = await Planet.find(query);
+    res.json(data);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Something went wrong" });
+  }
+}
+);
+
+//Get a single mission by ID
+router.get("/:id", async (req, res) => {
+  try {
+  const data = await Planet.findById(req.params.id)
+  response.json(data);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Something went wrong" });
+  }
+}
+);
+//Delete a mission by ID
+router.delete("/:id", async (req, res) => {
+  try {
+    const data = await Planet.findByIdAndDelete(req.params.id, {});
     response.json(data);
   } catch (error) {
     console.log(error);
-    response.status(500).json({ error: "Something went wrong" });
+    return res.status(500).json({ error: "Something went wrong" });
   }
 });
 
-//Create a GET route for /planet/:id that returns a planet by id
-router.get("/:id", async (request, response) => {
+//Update a mission by ID
+router.put("/:id", async (req, res) => {
   try {
-    const planet = await Planet.findById(request.params.id);
-
-    response.json(planet);
-  } catch (error) {
-    console.log(error);
-    response.status(500).json({ error: "Something went wrong" });
-  }
-});
-
-//Create a PUT route for /planet that updates a planet
-router.put("/:id", async (request, response) => {
-  try {
-    const body = request.body;
+    const body = req.body;
     const data = await Planet.findByIdAndUpdate(
-      request.params.id,
+      req.params.id, body,
       {
         $set: {
-          missions: body.missions,
-          user: body.user,
-          typeofMission: body.typeofMission,
-          planet: body.planet
+          missionName: body.missionName,
+          planet: body.planet,
+          missionType: body.missionType,
+          traveler: body.traveler,
         }
-      },
-      { new: true }
+        },
+        { new: true }
     );
     response.json(data);
   } catch (error) {
     console.log(error);
-    if ("planet" in error && error.planet === "ValidationError")
-      return response.status(400).json(error.errors);
-    return response.status(500).json({ error: "Something went wrong" });
-  }
-});
+    if ("traveler" in error && error.traveler === "ValidatorError" {
+      return res.status(400).json({ traveler: error.errors.traveler.message });
 
-//Create a DELETE route for /planet that deletes a planet
-router.delete("/:id", async (request, response) => {
-  try {
-    const data = await Planet.findByIdAndRemove(request.params.id, {});
-    response.json(data);
-  } catch (error) {
-    console.log(error);
-    return response.status(500).json({ error: "Something went wrong" });
+      return res.status(500).json(error.errors);
   }
-});
+}
+}
+);
 
 export default router;
