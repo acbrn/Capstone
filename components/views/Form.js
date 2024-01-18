@@ -3,8 +3,8 @@ import html from "html-literal";
 export default () => html`
   <form id="form" method="POST" action="">
     <div class="planetForm" id="planet-form">
-      <label for="planets">Select a Planet</label>
-      <select id="planets" name="planets">
+      <label for="planet">Select a Planet</label>
+      <select id="planet" name="planets">
         <option value="">Select a Planet</option>
         <option value="Mercury">Mercury</option>
         <option value="Venus">Venus</option>
@@ -17,30 +17,28 @@ export default () => html`
       ><br />
 
       <div class="rowTwo">
-        <label for="missions">Name Missions</label>
+        <label for="missionName">Name Missions</label>
         <div class="input-box"></div>
-        <input type="text" id="missions" name="missions" />
+        <input type="text" id="missionName" name="missionName" />
       </div>
 
-      <label for="typeofMission">Type of Missions</label>
+      <label for="missionType">Type of Missions</label>
       <div class="rowThree">
-        <input type="radio" name="newMission" value="Rover" />
-        <p>Rover</p>
-      </input>
-        <input type="radio" name="newMission" value="Satellite" />
-        <p>Satellite</p>
-      </input>
-        <input type="radio" name="newMission" value="Human" />
-        <p> Human</p>
-      </input>
-        <input type="radio" name="newMission" value="Drone" />
-        <p>Drone</p>
-      </input>
+        <input type="checkbox" id="orbiter" name="newMission" value="Orbiter" />
+        <label for="orbiter">Orbiter</label>
+        <input type="checkbox" id="flyby" name="newMission" value="Flyby" />
+        <label for="flyby">Flyby</label>
+        <input type="checkbox" id="rover" name="newMission" value="Rover" />
+        <label for="rover">Rover</label>
+        <input type="checkbox" id="human" name="newMission" value="Human" />
+        <label for="human">Human</label>
+        <input type="checkbox" id="drone" name="newMission" value="Drone" />
+        <label for="drone">Drone</label>
       </div>
 
       <div class="rowFour">
         <div class="input-box">
-          <label for="user">Traveler's Name</label>
+          <label for="traveler">Traveler's Name</label>
           <input type="text" id="user" name="user" />
         </div>
       </div>

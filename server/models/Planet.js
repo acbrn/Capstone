@@ -1,33 +1,24 @@
 import mongoose from "mongoose";
 
-const planetSchema = new mongoose.Schema({
-  planet: {
+const MissionSchema = new mongoose.Schema({
+  traveler: {
     type: String,
-    enum: [
-      "Mercury",
-      "Venus",
-      "Earth",
-      "Mars",
-      "Jupiter",
-      "Saturn",
-      "Uranus",
-      "Neptune"
-    ],
-    validate: /^[A-Za-z]*$/
+    required: true,
+    validate: /^[A-Za-z0-9 ]*$/
   },
-  user: {
+  planet: [String],
+  missionType: {
     type: String,
-    validate: /^[A-Za-z]*$/
+    required: true,
+    enum: ["Orbiter", "Flyby", "Rover", "Human", "Drone"]
   },
-  missions: {
+  missionName: {
     type: String,
-    validate: /^[A-Za-z]*$/
-  },
-  typeofMission: {
-    type: String,
-    enum: ["Orbiter", "Satellite", "Rover", "Human", "Drone"]
+    required: true,
+    validate: /^[A-Za-z0-9 ]*$/
   }
 });
 
-const Planet = mongoose.model("Planet", planetSchema);
-export default Planet;
+const Mission = mongoose.model("Mission", MissionSchema);
+
+export default Mission;

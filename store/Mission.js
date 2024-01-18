@@ -1,5 +1,5 @@
 export default {
   header: "Mission Name Ideas",
-  view: "Submit",
-  missions: []
+  view: "Mission",
+  mission: []
 };
