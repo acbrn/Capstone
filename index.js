@@ -1,39 +1,11 @@
 import { Header, Nav, Main, Footer } from "./components";
 import * as store from "./store";
 import Navigo from "navigo";
-import { capitalize, get } from "lodash";
+import { capitalize } from "lodash";
 import axios from "axios";
 
-// Import planet images
-import Mercury from "./assets/img/mercury.png";
-import Venus from "./assets/img/venus.png";
-import Earth from "./assets/img/earth.png";
-import Mars from "./assets/img/mars.png";
-import Jupiter from "./assets/img/jupiter.png";
-import Saturn from "./assets/img/saturn.png";
-import Uranus from "./assets/img/uranus.png";
-import Neptune from "./assets/img/neptune.png";
-import satellite from "./assets/img/space-satellite.png";
-import { json } from "stream/consumers";
-
-//Function to display planet images randomly on the home page
-
-function randomPlanet() {
-  const planetImages = [
-    Mercury,
-    Venus,
-    Earth,
-    Mars,
-    Jupiter,
-    Saturn,
-    Uranus,
-    Neptune
-  ];
-  const randomImage = Math.floor(Math.random() * planetImages.length);
-  return planetImages[randomImage];
-}
-
 const router = new Navigo("/");
+
 function render(state = store.Home) {
   document.querySelector("#root").innerHTML = `
     ${Header(state)}
@@ -44,117 +16,94 @@ function render(state = store.Home) {
   router.updatePageLinks();
   afterRender(state);
 }
+
 function afterRender(state) {
+  // add menu toggle to bars icon in nav bar
   document.querySelector(".fa-bars").addEventListener("click", () => {
     document.querySelector("ul").classList.toggle("hidden");
   });
-
   if (state.view === "Home") {
-    //Do this stuff when on Home view
+    // Do this stuff
     document.getElementById("satellite").addEventListener("click", event => {
       event.preventDefault();
-      router.navigate("/planets");
+      router.navigate("/");
     });
   }
   if (state.view === "Form") {
-    //Add event listener to form
+    // Add an event handler for the submit button on the form
     document.querySelector("form").addEventListener("submit", event => {
       event.preventDefault();
 
-      //Get the form elements
-      const missionInput = event.target.elements;
-      console.log("Here is element list", missionInput);
+      // Get the form element
+      const inputList = event.target.elements;
+      console.log("Input Element List", inputList);
 
-      //Create an empty array to hold the mission type
-      const missionType = [];
-      //Iterate over the mission type checkboxes
-      for (let i = 0; i < missionInput.newMission.length; i++) {
-        //If a checkbox is checked, add the value to the mission type array
-        if (missionInput.newMission[i].checked) {
-          missionType.push(missionInput.newMission[i].value);
+      // Create an empty array to hold the toppings
+      const typeMission = [];
+      const planet = [];
+      // Iterate over the typeMission array
+
+      for (let input of inputList.typeMission) {
+        // if the value of the checked attribute is true then add the value to the typeMission array
+        if (input.checked) {
+          typeMission.push(input.value);
         }
       }
-      //Create a new mission object
-      const newMission = {
-        missionName: missionInput.missionName.value,
-        planet: missionInput.planet.value,
-        missionType: missionType,
-        traveler: missionInput.user.value
+      for (let input of inputList.planet) {
+        // if the value of the checked attribute is true then add the value to the typeMission array
+        if (input.checked) {
+          planet.push(input.value);
+        }
+      }
+      // Create a request body object to send to the API
+      const requestData = {
+        user: inputList.user,
+        planet: planet,
+        mission: inputList.missionName,
+        typeMission: typeMission
       };
-      //Create a request body object to send to the API
-      const requestBody = {
-        mission: newMission
-      };
-      //Log the request body to the console
-      console.log("Here is the request body", requestBody);
-      //Make a POST request to the API
-      axios
-        .post(`${process.env.PLANET_API_URL}/planet`, requestBody)
-        .then(response => {
-          //Log the response from the API to the console
-          console.log("Here is the response", response.data);
-          //Navigate to the mission page to see the new mission
-          router.navigate("/NewMission");
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    });
-  }
-  if (state.view === "NewMission") {
-    //Need table to display mission information
-    const table = document.querySelector("table");
-    //Need tbody to append rows to
-    const tbody = document.querySelector("tbody");
-    //Need a template to create rows
-    const template = document.querySelector("#mission-row");
-    //Need a fragment to hold the rows
-    const fragment = document.createDocumentFragment();
-    //Need a list of missions
-    const missions = get(state, "mission", []);
-    //Iterate over the list of missions
-    missions.forEach(mission => {
-      //Create a table row element
-      const tr = document.importNode(template.content, true);
-      //Add data to the row
-      tr.querySelector(".mission-name").textContent = mission.missionName;
-      tr.querySelector(".planet").textContent = mission.planet;
-      tr.querySelector(".mission-type").textContent = mission.missionType.join(
-        ", "
-      );
-      tr.querySelector(".traveler").textContent = mission.traveler;
-      //Append the row to the fragment
-      fragment.appendChild(tr);
-    });
-    //Append the fragment to the tbody
-    tbody.appendChild(fragment);
-    //Append the tbody to the table
-    table.appendChild(tbody);
+      // Log the request body to the console
+      console.log("request Body", requestData);
 
-    //Add event listener to the button
-    document.querySelector("button").addEventListener("click", event => {
-      event.preventDefault();
-      //Navigate to the form page
-      router.navigate("/Form");
+      axios
+        // Make a POST request to the API to create a new planet
+        .post(`${process.env.PLANET_API_URL}/planets`, requestData)
+        .then(response => {
+          //  Then push the new planet onto the NewMission state mission attribute, so it can be displayed in the mission list
+          store.NewMission.mission.push(response.data);
+          // Then Navigate to the NewMission view
+        })
+        // If there is an error log it to the console
+        .catch(error => {
+          console.log("It puked", error);
+        });
+      router.navigate("/NewMission");
     });
   }
 }
+
 router.hooks({
   before: (done, params) => {
+    // We need to know what view we are on to know what data to fetch
     const view =
       params && params.data && params.data.view
         ? capitalize(params.data.view)
         : "Home";
-
+    // Add a switch case statement to handle multiple routes
     switch (view) {
+      // New Case for the Home View
       case "Home":
         axios
+          // Get request to retrieve the current weather data using the API key and providing a city name
           .get(
             `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.OPEN_WEATHER_MAP_API_KEY}&q=iowa%20city`
           )
           .then(response => {
+            // Convert Kelvin to Fahrenheit since OpenWeatherMap does provide otherwise
             const kelvinToFahrenheit = kelvinTemp =>
               Math.round((kelvinTemp - 273.15) * (9 / 5) + 32);
+
+            // Create an object to be stored in the Home state from the response
             store.Home.weather = {
               city: response.data.name,
               temp: kelvinToFahrenheit(response.data.main.temp),
@@ -168,6 +117,7 @@ router.hooks({
             done();
           });
         break;
+      // Add a case for each view that needs data from an API
       case "About":
         axios
           .get(`${process.env.ISS_API_URL}`)
@@ -185,21 +135,11 @@ router.hooks({
             done();
           });
         break;
-      case "Mission":
+      case "NewMission":
         axios
-          .get(
-            `https://planet-api-url.onrender.com=${process.env.PLANET_API_URL}`
-          )
+          .get(`${process.env.PLANET_API_URL}/planets`)
           .then(response => {
-            const formatMission = mission => {
-              return {
-                missionName: mission.missionName,
-                planet: mission.planet,
-                missionType: mission.missionType,
-                traveler: mission.traveler
-              };
-            };
-            store.Mission.mission = response.data.map(formatMission);
+            store.NewMission.mission = response.data;
             done();
           })
           .catch(err => {
@@ -211,21 +151,20 @@ router.hooks({
         done();
     }
   },
-
   already: params => {
     const view =
       params && params.data && params.data.view
         ? capitalize(params.data.view)
         : "Home";
+
     render(store[view]);
   }
 });
-
 router
   .on({
     "/": () => render(),
     ":view": params => {
-      const view = capitalize(params.data.view);
+      let view = capitalize(params.data.view);
       if (view in store) {
         render(store[view]);
       } else {
