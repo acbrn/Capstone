@@ -4,7 +4,7 @@ export default () => html`
   <form id="form" method="POST" action="">
     <div class="planetForm" id="planet-form">
       <label for="planet">Select a Planet</label>
-      <select id="planet" name="planets">
+      <select id="planet" name="planet">
         <option value="">Select a Planet</option>
         <option value="Mercury">Mercury</option>
         <option value="Venus">Venus</option>
