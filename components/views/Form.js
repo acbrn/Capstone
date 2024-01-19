@@ -1,51 +1,120 @@
 import html from "html-literal";
 
 export default () => html`
-  <form id="form" method="POST" action="">
-    <div class="planetForm" id="planet-form">
-      <label for="planet">Select a Planet</label>
-      <select id="planet" name="planet">
-        <option value="">Select a Planet</option>
-        <option value="Mercury">Mercury</option>
-        <option value="Venus">Venus</option>
-        <option value="Earth">Earth</option>
-        <option value="Mars">Mars</option>
-        <option value="Jupiter">Jupiter</option>
-        <option value="Saturn">Saturn</option>
-        <option value="Uranus">Uranus</option>
-        <option value="Neptune">Neptune</option></select
-      ><br />
-
-      <div class="rowTwo">
-        <label for="missionName">Name Missions</label>
-        <div class="input-box"></div>
-        <input type="text" id="missionName" name="missionName" />
+  <section id="NewMission">
+    <form id="NewMissionForm" method="POST" action="">
+      <h2>Enter a New Mission</h2>
+      <div>
+        <label for="missionName">Mission Name</label>
+        <input type="text" name="missionName" id="missionName" required />
       </div>
-
-      <label for="missionType">Type of Missions</label>
-      <div class="rowThree">
-        <input type="checkbox" id="orbiter" name="newMission" value="Orbiter" />
-        <label for="orbiter">Orbiter</label>
-        <input type="checkbox" id="flyby" name="newMission" value="Flyby" />
-        <label for="flyby">Flyby</label>
-        <input type="checkbox" id="rover" name="newMission" value="Rover" />
-        <label for="rover">Rover</label>
-        <input type="checkbox" id="human" name="newMission" value="Human" />
-        <label for="human">Human</label>
-        <input type="checkbox" id="drone" name="newMission" value="Drone" />
-        <label for="drone">Drone</label>
+      <div>
+        <label for="user">User</label>
+        <input type="text" name="user" id="user" required />
       </div>
-
-      <div class="rowFour">
-        <div class="input-box">
-          <label for="traveler">Traveler's Name</label>
-          <input type="text" id="user" name="user" />
-        </div>
+      <div>
+        <label for="planet">Planet</label>
+        <input
+          type="checkbox"
+          id="id_1"
+          class="item1"
+          name="planet"
+          value="Mercury"
+        />
+        <label for="id_1">Mercury</label>
+        <input
+          type="checkbox"
+          id="id_2"
+          class="item2"
+          name="planet"
+          value="Venus"
+        />
+        <label for="id_2">Venus</label>
+        <input
+          type="checkbox"
+          id="id_3"
+          class="item3"
+          name="planet"
+          value="Earth"
+        />
+        <label for="id_3">Earth</label>
+        <input
+          type="checkbox"
+          id="id_4"
+          class="item4"
+          name="planet"
+          value="Mars"
+        />
+        <label for="id_4">Mars</label>
+        <input
+          type="checkbox"
+          id="id_5"
+          class="item5"
+          name="planet"
+          value="Jupiter"
+        />
+        <label for="id_5">Jupiter</label>
+        <input
+          type="checkbox"
+          id="id_6"
+          class="item6"
+          name="planet"
+          value="Saturn"
+        />
+        <label for="id_6">Saturn</label>
+        <input
+          type="checkbox"
+          id="id_7"
+          class="item7"
+          name="planet"
+          value="Uranus"
+        />
+        <label for="id_7">Uranus</label>
+        <input
+          type="checkbox"
+          id="id_8"
+          class="item8"
+          name="planet"
+          value="Neptune"
+        />
+        <label for="id_8">Neptune</label>
       </div>
-
-      <div class="rowFive" id="rowFive">
-        <button id="submit" type="submit">Submit</button>
+      <div>
+        <label for="typeMission">Type of Mission</label>
+        <input
+          type="checkbox"
+          id="id_1"
+          class="item1"
+          name="typeMission"
+          value="Flyby"
+        />
+        <label for="id_1">Flyby</label>
+        <input
+          type="checkbox"
+          id="id_2"
+          class="item2"
+          name="typeMission"
+          value="Orbiter"
+        />
+        <label for="id_2">Orbiter</label>
+        <input
+          type="checkbox"
+          id="id_3"
+          class="item3"
+          name="typeMission"
+          value="Lander"
+        />
+        <label for="id_3">Lander</label>
+        <input
+          type="checkbox"
+          id="id_4"
+          class="item4"
+          name="typeMission"
+          value="Rover"
+        />
+        <label for="id_4">Rover</label>
       </div>
-    </div>
-  </form>
+      <input type="submit" name="submit" value="Submit Mission" />
+    </form>
+  </section>
 `;

@@ -1,84 +1,100 @@
-import { Router, response } from "express";
+import { Router } from "express";
 import Planet from "../models/Planet.js";
 
 const router = Router();
 
-// Create mission route handles "POST" requests to http://localhost:4040/planet/
-router.post("/", async (req, res) => {
+// Create planet route handles "/planets"
+router.post("/", async (request, response) => {
   try {
-    const body = req.body;
-    const planet = new Planet({
-      missionName: body.missionName,
-      planet: body.planet,
-      missionType: body.missionType,
-      traveler: body.traveler
-    });
-    const newPlanet = await planet.save();
-    res.json(newPlanet);
-  } catch (error) {
-    console.log(error);
-    if ("traveler" in error && error.traveler === "ValidatorError") {
-      return res.status(400).json({ traveler: error.errors.traveler.message });
-    }
-    return res.status(500).json(error.errors);
-  }
-});
-//Get all missions routes
-router.get("/", async (req, res) => {
-  try {
-    const data = await Planet.find();
-    res.json(data);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "Something went wrong" });
-  }
-});
-//Get a single mission by ID
-router.get("/:id", async (req, res) => {
-  try {
-    const data = await Planet.findById(req.params.id);
+    console.log("request.body:", request.body);
+    const newMission = new Planet(request.body);
+
+    const data = await newMission.save();
+
     response.json(data);
   } catch (error) {
+    // Output error to the console incase it fails to send in response
     console.log(error);
-    res.status(500).json({ error: "Something went wrong" });
-  }
-});
-//Delete a mission by ID
-router.delete("/:id", async (req, res) => {
-  try {
-    const data = await Planet.findByIdAndDelete(req.params.id, {});
-    response.json(data);
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ error: "Something went wrong" });
+
+    if ("user" in error && error.user === "ValidationError")
+      return response.status(400).json(error.errors);
+
+    return response.status(500).json(error.errors);
   }
 });
 
-//Update a mission by ID
-router.put("/:id", async (req, res) => {
+// Get all planet route
+router.get("/", async (request, response) => {
   try {
-    const body = req.body;
+    // Store the query params into a JavaScript Object
+    const query = request.query; // Defaults to an empty object {}
+
+    const data = await Planet.find(query);
+
+    response.json(data);
+  } catch (error) {
+    // Output error to the console incase it fails to send in response
+    console.log(error);
+
+    return response.status(500).json(error.errors);
+  }
+});
+
+// Get a single planet by ID
+router.get("/:id", async (request, response) => {
+  try {
+    const data = await Planet.findById(request.params.id);
+
+    response.json(data);
+  } catch (error) {
+    // Output error to the console incase it fails to send in response
+    console.log(error);
+
+    return response.status(500).json(error.errors);
+  }
+});
+
+// Delete a planet by ID
+router.delete("/:id", async (request, response) => {
+  try {
+    const data = await Planet.findByIdAndRemove(request.params.id, {});
+    response.json(data);
+  } catch (error) {
+    // Output error to the console incase it fails to send in response
+    console.log(error);
+
+    return response.status(500).json(error.errors);
+  }
+});
+// Update a single planet by ID
+router.put("/:id", async (request, response) => {
+  try {
+    const body = request.body;
+
     const data = await Planet.findByIdAndUpdate(
-      req.params.id,
-      body,
+      request.params.id,
       {
         $set: {
-          missionName: body.missionName,
+          user: body.user,
           planet: body.planet,
-          missionType: body.missionType,
-          traveler: body.traveler
+          mission: body.mission,
+          typeMission: body.typeMission
         }
       },
-      { new: true }
+      {
+        new: true
+      }
     );
+
     response.json(data);
   } catch (error) {
+    // Output error to the console incase it fails to send in response
     console.log(error);
-    if ("traveler" in error && error.traveler === "ValidatorError") {
-      return res.status(400).json({ traveler: error.errors.traveler.message });
-    }
-    return res.status(500).json(error.errors);
+
+    if ("user" in error && error.user === "ValidationError")
+      return response.status(400).json(error.errors);
+
+    return response.status(500).json(error.errors);
   }
 });
-
-export default router; // export the router for usage in server/app.js
+export default router;

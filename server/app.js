@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import mission from "./routers/planet.js";
+import Planet from "./routers/planet.js";
 // Load environment variables from .env file
 dotenv.config();
 
@@ -93,6 +93,5 @@ app.get("/weather/:city", (request, response) => {
     city
   });
 });
-
-app.use("/planet", mission); // <-- Use Mission router for requests to the "/planet" path
+app.use("/planets", Planet);
 app.listen(PORT, () => console.log("Listening on port 4040"));
