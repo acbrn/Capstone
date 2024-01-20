@@ -1,7 +1,7 @@
 import html from "html-literal";
 
 export default () => html`
-  <section id="NewMission">
+  <section id="form">
     <form id="NewMissionForm" method="POST" action="">
       <h2>Enter a New Mission</h2>
       <div>

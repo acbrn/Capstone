@@ -33,51 +33,40 @@ function afterRender(state) {
     // Add an event handler for the submit button on the form
     document.querySelector("form").addEventListener("submit", event => {
       event.preventDefault();
-
       // Get the form element
-      const inputList = event.target.elements;
-      console.log("Input Element List", inputList);
-
-      // Create an empty array to hold the toppings
-      const typeMission = [];
-      const planet = [];
-      // Iterate over the typeMission array
-
-      for (let input of inputList.typeMission) {
-        // if the value of the checked attribute is true then add the value to the typeMission array
-        if (input.checked) {
-          typeMission.push(input.value);
+      const inputForm = event.target.elements;
+      console.log("Here is the form data", inputForm);
+      //Create an empty array to hold the planets
+      let planets = [];
+      // Loop through the form elements
+      for (let i = 0; i < inputForm.length; i++) {
+        // Check if the element is a checkbox and if it is checked
+        if (inputForm[i].type === "checkbox" && inputForm[i].checked) {
+          // If it is checked, push the value to the planets array
+          planets.push(inputForm[i].value);
         }
       }
-      for (let input of inputList.planet) {
-        // if the value of the checked attribute is true then add the value to the typeMission array
-        if (input.checked) {
-          planet.push(input.value);
+      //Create an empty array to hold the type of mission
+      let typeMission = [];
+      // Loop through the form elements
+      for (let i = 0; i < inputForm.length; i++) {
+        // Check if the element is a radio button and if it is checked
+        if (inputForm[i].type === "radio" && inputForm[i].checked) {
+          // If it is checked, push the value to the typeMission array
+          typeMission.push(inputForm[i].value);
         }
       }
-      // Create a request body object to send to the API
-      const requestData = {
-        user: inputList.user,
-        planet: planet,
-        mission: inputList.missionName,
+      // Create an object to hold the form data
+      const formData = {
+        user: inputForm.user.value,
+        missionName: inputForm.missionName.value,
+        planet: planets,
         typeMission: typeMission
       };
-      // Log the request body to the console
-      console.log("request Body", requestData);
-
-      axios
-        // Make a POST request to the API to create a new planet
-        .post(`${process.env.PLANET_API_URL}/planets`, requestData)
-        .then(response => {
-          //  Then push the new planet onto the NewMission state mission attribute, so it can be displayed in the mission list
-          store.NewMission.mission.push(response.data);
-          // Then Navigate to the NewMission view
-        })
-        // If there is an error log it to the console
-        .catch(error => {
-          console.log("It puked", error);
-        });
-      router.navigate("/NewMission");
+      // Add the form data to the mission state on the Home view
+      store.Home.mission = formData;
+      // Navigate to the Home view
+      router.navigate("/Home");
     });
   }
 }
@@ -135,13 +124,22 @@ router.hooks({
             done();
           });
         break;
-      case "NewMission":
+      case "Mission":
         axios
-          .get(`${process.env.PLANET_API_URL}/planets`)
+          .get(`${process.env.PLANET_API_URL}/Planets`)
           .then(response => {
-            store.NewMission.mission = response.data;
+            const missionData = response.data.Planets;
+            //Add the response data to the mission state on the Home view
+            store.Home.mission = {
+              user: missionData.user,
+              planet: missionData.planet,
+              mission: missionData.mission,
+              typeMission: missionData.typeMission
+            };
+
             done();
           })
+
           .catch(err => {
             console.log(err);
             done();
