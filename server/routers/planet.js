@@ -3,13 +3,14 @@ import Planet from "../models/Planet.js";
 
 const router = Router();
 
-// Create planet route handles "/planets"
+// Create planet route handles POST requests to /Planets
 router.post("/", async (request, response) => {
   try {
-    console.log("request.body:", request.body);
-    const newMission = new Planet(request.body);
+    //Create a new mission using the Planet model and the request body
+    const planet = new Planet(request.body);
 
-    const data = await newMission.save();
+    // Save the mission to the database
+    const data = await planet.save();
 
     response.json(data);
   } catch (error) {

@@ -6,6 +6,12 @@ export default state => html`
     <div class="item">
       Welcome home traveler!
       <br />
+      <h4>You submitted the mission ideas from the Form page:</h4>
+      <h4>
+        ${state.mission.user} wants to send a ${state.mission.typeMission} to
+        mission to ${state.mission.planet}. The mission name is ${state.mission.missionName}.
+      <br />
+      <h4>Here is the weather in your area:</h4>
       <h4>
         The weather in ${state.weather.city} is ${state.weather.description}.
         Temperature is ${state.weather.temp}F, and it feels like
