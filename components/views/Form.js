@@ -12,7 +12,7 @@ export default () => html`
         <label for="user">User</label>
         <input type="text" name="user" id="user" required />
       </div>
-      <div>
+      <div id="planetlayout">
         <label for="planet">Planet</label>
         <input
           type="checkbox"
@@ -79,7 +79,7 @@ export default () => html`
         />
         <label for="id_8">Neptune</label>
       </div>
-      <div>
+      <div id="missiontypelayout">
         <label for="typeMission">Type of Mission</label>
         <input
           type="checkbox"
