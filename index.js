@@ -126,7 +126,7 @@ router.hooks({
         break;
       case "Mission":
         axios
-          .get(`${process.env.PLANET_API_URL}/Planets`)
+          .get(`${process.env.MY_API}/Planets`)
           .then(response => {
             const missionData = response.data.Planets;
             //Add the response data to the mission state on the Home view
