@@ -4,11 +4,11 @@ export default state => html`
   <div class="aboutPage">
     <h3>About Interstellar</h3>
     <br />
-    <h4>
-      The ISS is currently flying over ${state.isslocation.latitude} latitude by
-      ${state.isslocation.longitude} longitude. It is traveling at an average
-      speed of 17,150 miles per hour.
-    </h4>
+    <h5>The current location of the International Space Station is:</h5>
+    latitude: ${state.isslocation.latitude} longitude:
+    ${state.isslocation.longitude}
+    <br />
+    <br />
 
     Welcome to a celestial journey that transcends the ordinary and ignites the
     flame of curiosity within! Our mission is clear: to foster a love for

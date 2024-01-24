@@ -3,16 +3,16 @@ import Planet from "../models/Planet.js";
 
 const router = Router();
 
-// Create planet route handles POST requests to /Planets
+// Create planet route handles POST requests to /Planet
 router.post("/", async (request, response) => {
   try {
     //Create a new mission using the Planet model and the request body
     const planet = new Planet(request.body);
-
     // Save the mission to the database
     const data = await planet.save();
-
+    // POST request returns the newly created mission including its _id
     response.json(data);
+    console.log(data);
   } catch (error) {
     // Output error to the console incase it fails to send in response
     console.log(error);
@@ -98,4 +98,5 @@ router.put("/:id", async (request, response) => {
     return response.status(500).json(error.errors);
   }
 });
+
 export default router;

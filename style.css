@@ -434,6 +434,11 @@ h4{
   display: flex;
   justify-content: center;
 }
+h5{
+  color: var(--color-accent);
+  display: flex;
+  justify-content: center;
+}
 h6{
   color: var(--color-accent);
   display: none;
@@ -518,13 +523,6 @@ footer {
 #acbrn {
   width: 30vw;
   height: 15vh;
-}
-#bottomLine {
-  color: var(--color-accent);
-  text-align: center;
-  font-size: 1.5vw;
-  text-decoration: none;
-  list-style-type: none;
 }
 /* Responsive */
 .container {

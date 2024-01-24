@@ -7,12 +7,12 @@ export default state => html`
       Welcome home traveler!
       <br />
       <br />
-      <h4>Here is the weather in your area:</h4>
+      <!-- <div id="weather">Here is the weather in your area:</div>
       <h4>
         The weather in ${state.weather.city} is ${state.weather.description}.
         Temperature is ${state.weather.temp}F, and it feels like
         ${state.weather.feelsLike}F.
-      </h4>
+      </h4> -->
       <img class="homeImg" id="earth" src="${Earth}" />
       <br />
       Embark on a cosmic journey with our dedication to unveiling the mysteries
@@ -35,12 +35,23 @@ export default state => html`
       The next frontier is just a click away!
       <br />
 
-      <h5>You submitted the mission ideas from the Form page:</h5>
-      <h5>
-        ${state.mission.user} wants to send a ${state.mission.typeMission} to
-        mission to ${state.mission.planet}. The mission name is
-        ${state.mission.missionName}.
-      </h5>
+      <div id="mission submit">
+        You submitted the mission ideas from the Form page:
+      </div>
+      ${state.mission
+        .map(
+          mission => `
+      <div class="mission">
+        <h3>You:${mission.user}</h3>
+        <h4>Planet: ${mission.planet}</h4>
+        <h4>Mission Name: ${mission.mission}</h4>
+        <h4>Type of Mission: ${mission.typeMission}</h4>
+      </div>
+    `
+        )
+        .join("")}
+
+      <br />
     </div>
   </div>
 `;

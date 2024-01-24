@@ -6,14 +6,18 @@ const planetSchema = new mongoose.Schema({
     required: true,
     validate: /^[A-Za-z0-9 ]*$/
   },
-  planet: [String],
-  mission: {
+  planet: {
+    type: String,
+    required: true,
+    validate: /^[A-Za-z0-9 ]*$/
+  },
+  missionName: {
     type: String,
     validate: /^[A-Za-z0-9 ]*$/
   },
   typeMission: [String]
 });
 
-const Planet = mongoose.model("Planet", planetSchema);
+const Planet = mongoose.model("Planets", planetSchema);
 
 export default Planet;

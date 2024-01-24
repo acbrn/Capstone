@@ -82,7 +82,7 @@ export default () => html`
       <div id="missiontypelayout">
         <label for="typeMission">Type of Mission</label>
         <input
-          type="checkbox"
+          type="radio"
           id="id_1"
           class="item1"
           name="typeMission"
@@ -90,7 +90,7 @@ export default () => html`
         />
         <label for="id_1">Flyby</label>
         <input
-          type="checkbox"
+          type="radio"
           id="id_2"
           class="item2"
           name="typeMission"
@@ -98,7 +98,7 @@ export default () => html`
         />
         <label for="id_2">Orbiter</label>
         <input
-          type="checkbox"
+          type="radio"
           id="id_3"
           class="item3"
           name="typeMission"
@@ -106,7 +106,7 @@ export default () => html`
         />
         <label for="id_3">Lander</label>
         <input
-          type="checkbox"
+          type="radio"
           id="id_4"
           class="item4"
           name="typeMission"
