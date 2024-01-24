@@ -1,4 +1,4 @@
-import express, { request } from "express";
+import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import Planet from "./routers/planet.js";
@@ -93,5 +93,6 @@ app.get("/weather/:city", (request, response) => {
     city
   });
 });
+
 app.use("/Planets", Planet);
 app.listen(PORT, () => console.log("Listening on port 4040"));

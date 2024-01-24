@@ -12,7 +12,7 @@ export default () => html`
         <label for="user">User</label>
         <input type="text" name="user" id="user" required />
       </div>
-      <div>
+      <div id="planetlayout">
         <label for="planet">Planet</label>
         <input
           type="checkbox"
@@ -79,10 +79,10 @@ export default () => html`
         />
         <label for="id_8">Neptune</label>
       </div>
-      <div>
+      <div id="missiontypelayout">
         <label for="typeMission">Type of Mission</label>
         <input
-          type="checkbox"
+          type="radio"
           id="id_1"
           class="item1"
           name="typeMission"
@@ -90,7 +90,7 @@ export default () => html`
         />
         <label for="id_1">Flyby</label>
         <input
-          type="checkbox"
+          type="radio"
           id="id_2"
           class="item2"
           name="typeMission"
@@ -98,7 +98,7 @@ export default () => html`
         />
         <label for="id_2">Orbiter</label>
         <input
-          type="checkbox"
+          type="radio"
           id="id_3"
           class="item3"
           name="typeMission"
@@ -106,7 +106,7 @@ export default () => html`
         />
         <label for="id_3">Lander</label>
         <input
-          type="checkbox"
+          type="radio"
           id="id_4"
           class="item4"
           name="typeMission"

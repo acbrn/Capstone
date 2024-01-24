@@ -38,35 +38,30 @@ function afterRender(state) {
       console.log("Here is the form data", inputForm);
       //Create an empty array to hold the planets
       let planets = [];
-      // Loop through the form elements
-      for (let i = 0; i < inputForm.length; i++) {
-        // Check if the element is a checkbox and if it is checked
-        if (inputForm[i].type === "checkbox" && inputForm[i].checked) {
-          // If it is checked, push the value to the planets array
-          planets.push(inputForm[i].value);
-        }
-      }
-      //Create an empty array to hold the type of mission
-      let typeMission = [];
-      // Loop through the form elements
-      for (let i = 0; i < inputForm.length; i++) {
-        // Check if the element is a radio button and if it is checked
-        if (inputForm[i].type === "radio" && inputForm[i].checked) {
-          // If it is checked, push the value to the typeMission array
-          typeMission.push(inputForm[i].value);
+      //Iterate over the planets array
+      for (let input of inputForm.planet) {
+        //If the planet is checked, add it to the array
+        if (input.checked) {
+          planets.push(input.value);
         }
       }
       // Create an object to hold the form data
       const formData = {
         user: inputForm.user.value,
-        missionName: inputForm.missionName.value,
         planet: planets,
-        typeMission: typeMission
+        mission: inputForm.missionName.value,
+        typeMission: inputForm.typeMission.value
       };
-      // Add the form data to the mission state on the Home view
-      store.Home.mission = formData;
-      // Navigate to the Home view
-      router.navigate("/Home");
+      //Make a POST request to the API to create a new mission
+      axios
+        .post(`${process.env.MY_API}/Planets`, formData)
+        .then(response => {
+          store.Home.mission.push(response.data);
+          router.navigate("/");
+        })
+        .catch(err => {
+          console.log(err);
+        });
     });
   }
 }
@@ -125,21 +120,14 @@ router.hooks({
           });
         break;
       case "Mission":
+        //New axios request utilizing the already made environment variable
         axios
-          .get(`${process.env.PLANET_API_URL}/Planets`)
+          .get(`${process.env.MY_API}/Planets`)
           .then(response => {
-            const missionData = response.data.Planets;
-            //Add the response data to the mission state on the Home view
-            store.Home.mission = {
-              user: missionData.user,
-              planet: missionData.planet,
-              mission: missionData.mission,
-              typeMission: missionData.typeMission
-            };
-
+            console.log("Data from the API", response.data);
+            store.Home.mission = response.data;
             done();
           })
-
           .catch(err => {
             console.log(err);
             done();
@@ -148,16 +136,18 @@ router.hooks({
       default:
         done();
     }
-  },
-  already: params => {
-    const view =
-      params && params.data && params.data.view
-        ? capitalize(params.data.view)
-        : "Home";
-
-    render(store[view]);
   }
 });
+
+params => {
+  const view =
+    params && params.data && params.data.view
+      ? capitalize(params.data.view)
+      : "Home";
+
+  render(store[view]);
+};
+
 router
   .on({
     "/": () => render(),

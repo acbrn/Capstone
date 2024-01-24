@@ -1,6 +1,6 @@
 export default {
   header: "My Home Page",
   view: "Home",
-  weather: {},
-  mission: []
+  mission: [],
+  weather: {}
 };
