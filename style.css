@@ -455,9 +455,17 @@ h6{
   justify-content: space-evenly;
   display: flex;
 }
-.mission-list{
-
+#title1, #title2, #title3 {
+  color: var(--color-timberwolf);
+  text-align: center;
+  font-size: 2dvw;
+  text-decoration: none;
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
 }
+
+
 #Mercury, #Venus, #Earth, #Mars, #Jupiter, #Saturn, #Uranus, #Neptune{
   color: cyan;
   border: 2px solid snow;
