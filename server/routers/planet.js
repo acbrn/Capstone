@@ -78,7 +78,7 @@ router.put("/:id", async (request, response) => {
         $set: {
           user: body.user,
           planet: body.planet,
-          mission: body.mission,
+          missionName: body.missionName,
           typeMission: body.typeMission
         }
       },

@@ -440,7 +440,7 @@ h5{
   justify-content: center;
 }
 h6{
-  color: var(--color-accent);
+  color: var(--color-primary)   ;
   display: none;
   justify-content: center;
 }
@@ -459,7 +459,7 @@ h6{
 
 }
 #Mercury, #Venus, #Earth, #Mars, #Jupiter, #Saturn, #Uranus, #Neptune{
-  color: #0c1e36;
+  color: cyan;
   border: 2px solid snow;
   flex-flow: column wrap;
   max-width: 200px;
@@ -511,19 +511,9 @@ h6{
 
 /* Footer */
 footer {
-  position: relative;
-  color: var(--color-timberwolf);
-  text-align: -webkit-center;
-  background-color: #0a0a0a;
-  border-top: 3px solid #f9cc0b;
-  width: 100%;
-  font-family: "Exo 2", sans-serif;
-  font-weight: bold;
+  display: none;
 }
-#acbrn {
-  width: 30vw;
-  height: 15vh;
-}
+
 /* Responsive */
 .container {
   width: 100%;

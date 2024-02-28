@@ -15,7 +15,10 @@ const planetSchema = new mongoose.Schema({
     type: String,
     validate: /^[A-Za-z0-9 ]*$/
   },
-  typeMission: [String]
+  typeMission: {
+    type: [String],
+    validate: /^[A-Za-z0-9 ]*$/
+  }
 });
 
 const Planet = mongoose.model("Planets", planetSchema);
